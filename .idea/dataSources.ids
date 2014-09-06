@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails KetoanRuby: development" uuid="7784bde8-c0a5-4179-942d-ff4d5ec6b9a1">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails KetoanRuby: test" uuid="43e8fee4-a74b-4e5c-9a70-f2621f7ee2b3">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails KetoanRuby: production" uuid="84db5be8-c8c1-4866-9d16-3c1dabb7c4cf">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

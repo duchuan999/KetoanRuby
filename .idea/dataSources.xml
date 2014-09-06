@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1333596439">
+    <data-source source="LOCAL" name="Rails KetoanRuby: development" uuid="7784bde8-c0a5-4179-942d-ff4d5ec6b9a1">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/ketoan_binhan</jdbc-url>
+      <user-name>medisoft</user-name>
+      <user-password>dfc6dfc3dfc4dfc1dfd9df9bdf93df98df9a</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails KetoanRuby: test" uuid="43e8fee4-a74b-4e5c-9a70-f2621f7ee2b3">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:KetoanRuby_test</jdbc-url>
+      <user-name>KetoanRuby</user-name>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails KetoanRuby: production" uuid="84db5be8-c8c1-4866-9d16-3c1dabb7c4cf">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:KetoanRuby_production</jdbc-url>
+      <user-name>KetoanRuby</user-name>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Kế Toán</title>
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <%= stylesheet_link_tag   "danhmuc/dmnhomtk", :media => "all" %>
+
+
+
+</head>
+<body>
+<div id="outer">
+  <div id="header">
+
+    <div id="login-box">
+      <form action="#">
+        Đăng nhập
+        <input type="text" class="txt" />
+        <input type="password" class="txt" />
+        <input type="image" src="/assets/go-button.gif" value="Go" />
+      </form>
+    </div>
+  </div>
+  <div id="body-top">
+    <ul id="main-nav" class="clearfix">
+      <li><a href="../dmnhomtk">Trang chủ</a></li>
+      <li><a href="#">Nghiệp vụ</a></li>
+      <li><a href="#">Báo cáo</a></li>
+
+      <li id="right-tab"><a href="#">Tiện ích</a></li>
+    </ul>
+  </div>
+  <div id="body-middle" class="clearfix">
+    <div id="main-col">
+      <div id="nameplate-top"></div>
+      <div id="nameplate-middle" class="clearfix">
+
+      </div>
+      <div id="nameplate-bottom"></div>
+      <div id="content-top"></div>
+      <div id="content-wrapper">
+        <div id="content">
+          <%= yield %>
+        </div>
+      </div>
+      <div id="content-bottom"></div>
+    </div>
+
+  </div>
+
+  <div id="body-bottom"></div>
+  <div id="footer">
+    © 1997-2012 cybermedisoft.vn - Cty TNHH TMDV Tin Học Toàn Cầu
+  </div>
+</div>
+</body>
+</html>
+

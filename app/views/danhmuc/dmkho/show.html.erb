@@ -1,0 +1,17 @@
+<div class="employeeinfo">
+  <h2>THÔNG TIN KHO</h2>
+  <hr>
+  <table class="detailinfo">
+    <tr>
+      <th>Mã Kho:</th>
+      <td><%= @dmkho.makho %></td>
+    </tr>
+    <tr>
+      <th>Tên kho:</th>
+      <td><%= @dmkho.tenkho %></td>
+    </tr>
+
+  </table>
+  <hr>
+  <%= link_to("<< Xem danh sách kho", :action => 'index', :class => 'action index') %>
+</div>

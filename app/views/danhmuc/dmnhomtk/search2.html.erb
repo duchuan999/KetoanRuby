@@ -1,0 +1,34 @@
+
+<div>
+
+<h2>Danh Sách Nhóm Tài Khoản</h2>
+<%= link_to("<< Thêm mới", :action => 'new', :class => 'action new') %>
+<form id="loginForm" method="post" action="/danhmuc/dmnhomtk/search2">
+  <table class="new">
+    <tr>
+      <td>Mã </td>
+      <td> <input type="text" id="manhom" name="manhom" ></td>
+      <td> <%= submit_tag("Tìm") %></td>
+    </tr>
+
+  </table>
+</form>
+<table class="TFtable" border="0">
+  <tr>
+    <th align="center">Mã</th>
+    <th align="center">Tên</th>
+    <th align="center">Tính chất</th>
+    <th align="center" colspan="3">Tùy chọn</th>
+  </tr>
+  <% @ketqua.each do |ketqua| %>
+      <tr>
+        <td><%= ketqua.manhom %></td>
+        <td align="left"><%= ketqua.tennhom%></td>
+        <td align="left"><%= ketqua.ten%></td>
+        <td width="10"><%= link_to("Xem", {:action => 'show',:manhom=> ketqua.manhom}, :class => 'action show') %></td>
+        <td width="10"><%= link_to("Xóa",{:action => 'delete',:manhom=>ketqua.manhom},:class => 'action_xoa') %></td>
+        <td width="10"><%= link_to("Sửa",{:action => 'edit',:manhom=>ketqua.manhom},:class => 'action_sua') %></td>
+      </tr>
+  <% end %>
+</table>
+</div>

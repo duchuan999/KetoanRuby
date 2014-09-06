@@ -1,0 +1,21 @@
+
+<div >
+  <h2>Danh Sách Kho</h2>
+  <%= link_to("<< Thêm mới", :action => 'new', :class => 'action new') %>
+  <table class="TFtable" border="0">
+    <tr>
+      <th align="center">Mã</th>
+      <th align="center">Tên</th>
+      <th align="center" colspan="3">Tùy chọn</th>
+    </tr>
+    <% @dmkho.each do |dmkho| %>
+        <tr>
+          <td><%= dmkho.makho %></td>
+          <td align="left"><%= dmkho.tenkho%></td>
+          <td width="10"><%= link_to("Xem", {:action => 'show', :makho => dmkho.makho}, :class => 'action show') %></td>
+          <td width="10"><%= link_to("Xóa",{:action => 'delete',:makho => dmkho.makho},:class => 'action_xoa') %></td>
+          <td width="10"><%= link_to("Sửa",{:action => 'edit',:makho => dmkho.makho},:class => 'action_sua') %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>

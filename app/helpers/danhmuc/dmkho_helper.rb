@@ -1,0 +1,2 @@
+module Danhmuc::DmkhoHelper
+end

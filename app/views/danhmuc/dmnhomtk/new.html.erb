@@ -1,0 +1,32 @@
+<!--<script type="text/javascript" src="/assets/dmnhomtk.js"></script>!-->
+
+<div class="nhomtk">
+  <h2>THÔNG TIN NHÓM TK</h2>
+  <hr>
+  <%= form_for(:dmnhomtk, :url => {:action => 'create'}) do |f| %>
+
+      <table class="new">
+        <tr>
+          <th>Mã :</th>
+         <!-- <td><input id = "ma" type="text" name="manhom" onkeypress="check(event,this)"/></td> !-->
+          <td><%= f.text_field(:manhom)  %></td>
+        </tr>
+        <tr>
+          <th>Tên :</th>
+          <td><%= f.text_field(:tennhom)  %></td>
+        </tr>
+        <tr>
+          <th>Tính chất:</th>
+
+          <td>
+            <%= f.select(:tinhchat,@tinhchat.map{|s| [s.ten,s.id]}) %>
+          </td>
+
+        </tr>
+
+      </table>
+      <%= submit_tag("Lưu")%>
+  <% end %>
+  <hr>
+  <%= link_to("<< Xem danh sách ", :action => 'index', :class => 'action index') %>
+</div>

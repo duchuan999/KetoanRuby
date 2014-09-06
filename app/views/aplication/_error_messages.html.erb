@@ -1,0 +1,14 @@
+<% if object && object.errors.size >0  %>
+<div id="errorExplanation">
+  <h2><%= pluralize(object.errors.size,"error") %> loi khi luu </h2>
+  <p> Loi tai :</p>
+  <ul>
+    <% object.errors.full_messages.each do |msg| %>
+    <li> <%= msg %></li>
+        <% end %>
+  </ul>
+
+</div>
+  <% else %>
+    <p>test</p>
+<% end %>

@@ -1,0 +1,20 @@
+<div class="emloyeenew">
+  <h2>THÔNG TIN KHO MỚI</h2>
+  <hr>
+  <%= form_for(:dmkho, :url => {:action => 'update'}) do |f| %>
+      <table class="new">
+        <tr>
+          <th>Mã Kho:</th>
+          <td><%= f.text_field(:makho) %></td>
+        </tr>
+        <tr>
+          <th>Tên kho:</th>
+          <td><%= f.text_field(:tenkho)%></td>
+        </tr>
+
+      </table>
+      <%= submit_tag("Cập nhật") %>
+  <% end %>
+  <hr>
+  <%= link_to("<< Xem danh sách kho", :action => 'index', :class => 'action index') %>
+</div>

@@ -1,0 +1,21 @@
+<% error_messages_for(@dmnhomtk) %>
+<table class="new">
+  <tr>
+    <th>Mã :</th>
+    <td><%= f.text_field(:manhom) %></td>
+  </tr>
+  <tr>
+    <th>Tên :</th>
+    <td><%=  f.text_field(:tennhom) %>
+    </td>
+  </tr>
+  <tr>
+    <th>Tính chất:</th>
+
+    <td>
+      <%= f.select(:tinhchat,@tinhchat.map{|s| [s.ten,s.id]}) %>
+
+    </td>
+
+  </tr>
+</table>

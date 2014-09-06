@@ -1,0 +1,22 @@
+<div class="dmnhomtk">
+  <h2>THÔNG TIN NHÓM TK</h2>
+  <hr>
+  <table class="detailinfo">
+    <% @dmnhomtk.each do |dmnhomtk| %>
+    <tr>
+      <th>Mã Nhóm:</th>
+      <td><%= dmnhomtk.ma%></td>
+    </tr>
+    <tr>
+      <th>Tên Nhóm:</th>
+      <td><%= dmnhomtk.tennhom%></td>
+    </tr>
+    <tr>
+      <th>Tên Tính Chất:</th>
+      <td><%= dmnhomtk.ten%></td>
+    </tr>
+<% end%>
+  </table>
+  <hr>
+  <%= link_to("<< Xem danh sách Nhóm", :action => 'index', :class => 'action index') %>
+</div>
