@@ -58,6 +58,7 @@ KetoanRuby::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  match '/home/' => 'home/index#index', :via =>:get
 
   match '/danhmuc/dmkho/' => 'danhmuc/dmkho#index', :via => :get
   match '/danhmuc/dmkho/show/:makho' => 'danhmuc/dmkho#show', :via => :get
@@ -76,4 +77,13 @@ KetoanRuby::Application.routes.draw do
   match '/danhmuc/dmnhomtk/delete/:manhom' => 'danhmuc/dmnhomtk#delete', :via => [:get,:post]
   match '/danhmuc/dmnhomtk/edit/:manhom' => 'danhmuc/dmnhomtk#edit', :via => [:get,:post]
   match '/danhmuc/dmnhomtk/update/:manhom' => 'danhmuc/dmnhomtk#update', :via => [:get,:post]
+
+  match '/danhmuc/dmhethongtk/' => 'danhmuc/dmhethongtk#index', :via => :get
+  match '/danhmuc/dmhethongtk/show/:sotk' => 'danhmuc/dmhethongtk#show', :via => :get
+  match '/danhmuc/dmhethongtk/new' => 'danhmuc/dmhethongtk#new', :via => [:get,:post]
+  match '/danhmuc/dmhethongtk/search/' => 'danhmuc/dmhethongtk#search', :via => [:get,:post]
+  match '/danhmuc/dmhethongtk/save' => 'danhmuc/dmhethongtk#create', :via => [:get,:post]
+  match '/danhmuc/dmhethongtk/delete/:sotk' => 'danhmuc/dmhethongtk#delete', :via => [:get,:post]
+  match '/danhmuc/dmhethongtk/edit/:sotk' => 'danhmuc/dmhethongtk#edit', :via => [:get,:post]
+  match '/danhmuc/dmhethongtk/update/:sotk' => 'danhmuc/dmhethongtk#update', :via => [:get,:post]
 end

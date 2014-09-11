@@ -1,0 +1,47 @@
+<div class="hethongtk">
+  <h2>THÔNG TIN TÀI KHOẢN</h2>
+  <hr>
+  <%= form_for(:dmhethongtk, :url => {:action => 'update', :method => :get}) do |f| %>
+
+      <table class="edit">
+        <tr>
+          <th>Mã :</th>
+          <!-- <td><input id = "ma" type="text" name="manhom" onkeypress="check(event,this)"/></td> !-->
+          <td><%= f.text_field(:sotk)  %></td>
+        </tr>
+        <tr>
+          <th>Tên :</th>
+          <td><%= f.text_field(:tentk)  %></td>
+        </tr>
+        <tr>
+          <th>Tên tiếng anh:</th>
+          <td><%= f.text_field(:tentienganh)  %></td>
+        </tr>
+        <tr>
+          <th>Thuộc nhóm :</th>
+          <td> <%= f.select(:nhomtk,@dmnhomtk.map{|s| [s.manhom,s.manhom]}) %>
+
+            <%= f.select(:nhomtk,@dmnhomtk.map{|s| [s.tennhom,s.manhom]}) %>
+          </td>
+        </tr>
+        <tr>
+          <th>Tính chất</th>
+          <td>
+            <%= f.select(:tinhchat,@dmtinhchattk.map{|s| [s.ten,s.id]}) %>
+          </td>
+        </tr>
+        <tr>
+          <th>Diễn giải</th>
+          <td>
+            <%= f.text_area(:diengiai) %>
+          </td>
+        </tr>
+
+      <tr>
+        <td colspan="2" style='text-align:center;'><input type="button" id="btnSubmit" value=" Lưu thông tin " >
+        </td>
+      </tr> </table>
+  <% end %>
+  <hr>
+  <%= link_to("<< Xem danh sách ", :action => 'index', :class => 'action index') %>
+</div>

@@ -1,0 +1,2 @@
+module Danhmuc::DmhethongtkHelper
+end

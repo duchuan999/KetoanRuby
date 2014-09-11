@@ -1,0 +1,298 @@
+/*
+*   Style UI Cyber medisoft Edit By On Ruby On Rails Groups (CSS Library)
+*   Author: Links Global Conpany;
+*   1. Fix reset các css chung
+*   2. Fix giao diện subform của mỗi menu khi sổ ra ( btn-small, .disable, .btn-normal)
+*   3. Fix các nút thành phần của Form
+*   4. Fix CSS Icon (Các CSS icon được gắn với ký tự đầu là icon)
+*   5. Fix CSS cho responsive khung view
+*   6. Fix CSS js
+*   7. Fix CSS cho từng view
+*/
+/* 23/6/2014 */
+/*############################
+
+        1. Default css
+
+############################*/
+hr {border-bottom: solid 1px black; margin: 3px 0 3px 0;}
+li { list-style: none;}
+a { text-decoration: none;}
+
+b{ font-size: 12px;}
+/* Clear fix css*/
+.clearfix:before,
+.clearfix:after { content: " "; display: table;}
+.clearfix:after { clear: both;}
+
+html,body { font-family: Verdana, Tahoma, Arial, sans-serif;}
+.right { float: right !important;}
+.left { float: left !important;}
+.txt-r { text-align: right;}
+.txt-l { text-align: left;}
+.txt-c { text-align: center;}
+h1,h2, h3, h4, h5, h6 { display: inline-block; font-size: 12px;}
+
+.block { display: list-item;}
+/*############################
+
+       2. SubForm style Định dạng cho subform
+
+############################*/
+/*############################
+
+      3. Form style hiệu chỉnh giao diện cho các form
+
+############################*/
+button { cursor: pointer;}
+/* Input text */
+/**/
+
+.input-text-disable { border: 0px; background: #F0F0F0;}
+.tab-content input[type="text"]:disabled {   border:0 !important;border-bottom: dotted 1px black !important; background: none !important;}
+
+/* Form button */
+/* Button style Định dạng style nút */
+/* Định dạng cho các nút nhỏ */
+.menuText {
+    color: black;
+    font-size: 13px;
+    background: -webkit-gradient-
+    padding: 0 8px 0 0px;
+    height: 28px;
+    cursor: pointer;
+    margin-right: -6px;
+    line-height: 16px;
+    display: inline-block;
+}
+.menuText:hover {
+    text-shadow: 0 0 2px #E75757;
+}
+
+.menuText:active {
+    position:relative;
+    top:1px;
+}
+/* Btn style 1*/
+.btn-s1 { border: solid 1px #186DEE; background: white; color: #186DEE; height: 22px !important; line-height: 16px !important;
+    display: inline-block; float: left; border-radius: 2px; padding: 2px;padding-left: 18px;  margin: 1px 0 0px 0;}
+.btn-s1:hover { border: solid 1px #D3402B;  color: #D3402B;}
+.bg-button { background: url('/assets/cyber/icon/cm_button_bg.jpg'); /* IE6-9 */}
+
+/*button:disabled, button:disabled:hover, select:disabled, select:disabled:hover
+{
+    background: #666666;
+}*/
+/* Hiệu ứng shadow*/
+.blue {color: #FFFFFF; background-color:  #FFFFFF;}
+.shadow-subform {}
+/* Set icon image gán giá trị */
+
+/*############################
+
+       4. Icon CSS
+
+############################*/
+.btn-bar { display: inline-block;   width: 100%; height: auto; background-color: #EBECED;
+    box-shadow: 0px 1px 2px 1px #888888;}
+.btn-bar span { padding: 0px 2px 0px 25px; height: 28px; line-height: 28px; display: inline-block; }
+.btn-bar > select {  white-space: nowrap; width: auto; }
+.btn-bar > button:disabled { background-color: #EBECED; color: black; box-shadow:0px 0px 1px 1px silver inset;text-shadow: none;
+    top:0px;}
+.btn-bar >button { float: left;}
+/*// Định dạng lại các nút button cho các n*/
+
+
+.icon-people        {background: url("/assets/cyber/icon/cm_bt_newp.gif") no-repeat scroll 5px center;}
+.icon-new           {background: url("/assets/cyber/icon/cm_bt_new.png") no-repeat scroll 5px center;}
+.icon-save          {background: url("/assets/cyber/icon/cm_save_local.png") no-repeat scroll 5px center;}
+.icon-cancel        {background: url("/assets/cyber/icon/cm_bt_cancel.png") no-repeat scroll 5px center;}
+.icon-edit          {background: url("/assets/cyber/icon/cm_bt_edit.gif") no-repeat scroll 5px center;}
+.icon-delete        {background: url("/assets/cyber/icon/cm_bt_delete.png") no-repeat scroll 5px center;}
+.icon-print         {background: url("/assets/cyber/icon/cm_tb_print.png") no-repeat scroll 5px center;}
+.icon-close         {background: url("/assets/cyber/icon/cm_bt_close.gif") no-repeat scroll 5px center;}
+.icon-calendar      {background: url("/assets/cyber/icon/cm_calendar.gif") no-repeat scroll left center;}
+.icon-help          {}
+.icon-cb-down       { background: url("/assets/cyber/icon/cm_cb_down.png") no-repeat scroll left center; }
+.icon-cb-down:hover { background: url("/assets/cyber/icon/cm_cb_down_over.png") no-repeat scroll left center; }
+.icon-cb-down:disabled { background: url("/assets/cyber/icon/cm_cb_down_dis.png") no-repeat scroll left center;  }
+.icon-option        { background: url("/assets/cyber/icon/cm_tuychon.png") no-repeat scroll left center;padding-left: 20px; }
+.icon-search        { background: url("/assets/cyber/icon/cm_bt_view.gif") no-repeat scroll left center;}
+.icon-search-par    {}
+.icon-global        {background: url("/assets/cyber/icon/cm_dg_link_lang.png") 21px 21px ; height: 21px; width: 21px;}
+.icon_goi_y_normal  {background: url("/assets/cyber/icon/cm_goi_y0.png") no-repeat scroll right center; padding-right: 24px; height: 20px; padding-top: 3px;}
+.icon_goi_y_active  {background: url("/assets/cyber/icon/cm_goi_y1.png") no-repeat scroll right center; }
+.icon-hl7           {background: url("/assets/cyber/icon/hl7.gif") no-repeat  left center; background-size: 24px 18px; font-weight: bold;}
+
+.icon-avatar        { background: url("/assets/cyber/icon/cm_avatar.jpg") no-repeat ; width: 100%;height: 120px;}
+.icon-power         { background: url("/assets/cyber/icon/cm_bt_onwc.png") no-repeat scroll 2px center;}
+.icon-try           { background: url("/assets/cyber/icon/cm_bt_tryagain.png") no-repeat scroll 2px center;}
+.icon-snap          { background: url("/assets/cyber/icon/cm_bt_snap.jpg") no-repeat scroll 2px center;}
+/*#############
+ CSS cho các tab
+ ##############*/
+#tablist { width: 100%; height: auto; display: inline-block;margin-top: 2px;
+    box-shadow:0px 0px 4px 2px #888 inset;
+    background-color: #EBECED; position: relative; }
+#tablist .tab { height: 28px; padding: 2px 10px 1px 30px; display: inline-block; cursor: pointer; border-bottom: none;}
+.tab-active {webkit-box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ background: #4C9ED9 !important; color: white !important; box-shadow:0px 0px 3px 3px  #EBECED inset;}
+#tablist ul {  display: inline-block;   }
+#tablist ul li:hover {}
+#tablist ul li{ display: inline-block;  margin-left: -4px ; color: #434343; border: solid 0px; box-shadow: 1px 0px 0px 0px #888888;}
+#tablist .tab span { line-height: 28px;}
+
+.icon-tab-profile   { background: url("/assets/cyber/icon/cm_tab_profile.png") no-repeat scroll 10px center;}
+.icon-tab-history   { background: url("/assets/cyber/icon/cm_tab_history.png") no-repeat scroll 10px center;}
+.icon-tab-search    { background: url("/assets/cyber/icon/cm_tab_search.png") no-repeat scroll 10px center;}
+.icon-tab-help      { background: url("/assets/cyber/icon/cm_tab_help.png") no-repeat scroll 10px center;}
+/*############################
+
+      5. CSS cho responsive khung view
+
+############################*/
+/* Fields format dùng để định dạng các thẻ khung div */
+/* Field input có kèm icon
+<div class="field-10 field-icon">
+    <input type="text" name="NgaySinh" value="" class="fields">
+    <span class="icon icon-calendar"></span>
+</div>*/
+.field-icon { position: relative; }
+.icon { position: absolute; right: -24px; top:0;min-width: 22px; min-height: 22px;}
+.icon-left { min-width: 22px; min-height: 22px; float: left; line-height: 22px;}
+.threefield>.field { width: 33.33333%; float: left; display: inline-block;}
+.field:after, .fields:after{ content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+.fields {width: 100%; display: block; min-height: 22px !important;}
+.field { padding: 1px 0 1px 0; display: inline-block;}
+/* Set theo phần trăm */
+.field-01{ width: 01% !important; float: left;}
+.field-05{ width: 05% !important; float: left;}
+.field-10{ width: 10% !important; float: left;}
+.field-12{ width: 12% !important; float: left;}
+.field-15{ width: 15% !important; float: left;}
+.field-18{ width: 18% !important; float: left;}
+.field-20{ width: 20% !important; float: left;}
+.field-22{ width: 22% !important; float: left;}
+.field-25{ width: 25% !important; float: left;}
+.field-30{ width: 30% !important; float: left;}
+.field-35{ width: 35% !important; float: left;}
+.field-40{ width: 40% !important; float: left;}
+.field-45{ width: 45% !important; float: left;}
+.field-50{ width: 50% !important; float: left;}
+.field-55{ width: 55% !important; float: left;}
+.field-60{ width: 60% !important; float: left;}
+.field-65{ width: 65% !important; float: left;}
+.field-70{ width: 70% !important; float: left;}
+.field-75{ width: 75% !important; float: left;}
+.field-78{ width: 78% !important; float: left;}
+.field-80{ width: 80% !important; float: left;}
+.field-82{ width: 82% !important; float: left;}
+.field-85{ width: 85% !important; float: left;}
+.field-90{ width: 90% !important; float: left;}
+.field-100{float: left; }
+.threefield,
+.fields, .field-05, .field, .field-10, .field-15 ,.field-20,.field-25,.field-30,
+.field-35, .field-40 ,.field-45,.field-50,.field-55,
+.field-60, .field-65 ,.field-70,.field-75,.field-80, .field-100,
+.field-85, .field-90 {  webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; min-height: 22px; line-height: 22px;}
+
+
+/*############################
+
+      7. CSS Cho từng view
+
+############################*/
+
+/* Mặc định wrapper >= 640px */
+/*############################
+
+        6.1. Tiếp đón
+
+############################*/
+/* 6.1.1. Đăng Ký Khám Bệnh */
+
+/*  Responsive media
+
+/* Style rieng */
+/* 6.1.1.1. Tìm kiếm bệnh nhân. */
+.wrapper { height: auto;   width: 100%;  background-color: #EBECED;
+    box-shadow: 0px 1px 2px 1px #888888; display: flex;}
+
+#contain-1  {height: auto; width: 65%; background: #F0F0F0;}
+#contain-2  {height: auto; width: 20% ; background: #F5F5F5;}
+#contain-3  {height: auto; width: 14% ;  padding: 0px 0 5px 0; border: none;}
+#contain-3   ul {background: #C2D5FC; border: solid 1px silver; margin-top: 5px;}
+/*.contain>div {display: block;}*/
+.subcontain{ margin: 5px 0 5px 0;}
+.contain { display: inline-block; float: left; padding: 10px 0 10px 0; margin-right: 0.25%; margin-top: 5px;
+    margin-bottom: 5px;  background-color: #EBECED;  box-shadow: 0px 1px 2px 1px #888888;
+    border: solid #ACA899 1px; webkit-box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+.contain:first-child { margin-left: 0.25%; }
+#contain-1 .title { font-size: 9pt; font-weight: bold; text-decoration: underline; margin: 4px 0 8px 0;
+    margin-left: 15%;}
+#footer { height: 20px; display: inline-block;   width: 100%;  background-color: #EBECED;
+    box-shadow: 0px 1px 2px 1px #888888;}
+/* Tab 1 */
+#formdangkykhambenh {height: auto; font-size: 12px; display: inline-block;}
+.tab-content { display: none; background-color: #EEEEFF; font-size: 12px;}
+#tabs-1 .contain ul li  { height: auto; font-size: 8.25pt; padding: 1px 26px 1px 5px ; margin-left: 5px;}
+#tabs-1 .contain li label,
+#tabs-1 .contain li span {float: left; line-height: 20px;}
+#tabs-1 #contain-3 li a { text-decoration: underline; list-style: inherit  !important; color: #036;}
+#tabs-1 #contain-3 li a:hover { color: red;}
+#tabs-1 .contain ul input[type="checkbox"] { margin-top: 4px; margin-right: 5px; padding-left: 5px;}
+#tabs-1 #contain-2 .title { text-decoration: underline; font-weight: bold;}
+#tabs-1 #contain-2 ul { padding: 4px 0 4px 0;}
+/* Khởi tạo bệnh án giao diện #contain-3 >*/
+#tabs-1 .view-hidden { display: none; position: fixed; top: 0; left: 0; }
+#tabs-1 #view_benhan { position: fixed; height: 100%; width: 100%;}
+#tabs-1 #view_benhan > #bg { position: fixed; top: 0; left: 0; opacity: 0.8; background: silver; height: 100%; width: 100%;}
+#tabs-1 #view_benhan > #view { position: absolute;   top: 35px; background: white;
+    border-radius: 3px; border: solid 1px silver; -webkit-box-shadow: 1px 1px 1px black; box-shadow: 1px 1px 1px black; padding: 2px;}
+#tabs-1 { display: block;}
+#tabs-1 #nhaplieu { margin-top: 2px; background-color: #DFECFA !important; display: flex; }
+
+/* phần link bệnh án */
+/* Tab 3 */
+#tab3 #div_1 .div_inner { background: url("/assets/cyber/icon/cm_search_bg.png") no-repeat left bottom; padding: 5px;}
+#tab3 #div_1 {border: 1px solid #ACA899; background: #F0F0F0;}
+#tab3 #div_2 { background: #DEE8F4; margin-top: 5px; border: solid 1px silver; }
+
+#tab3 #table { overflow-y: auto; border: solid 1px silver; margin: 1px; background: white;  margin-top: 3px; position: relative;}
+/*#tab3 #table thead { position: absolute; top: 0; left: 0;}*/
+#tab3 #table thead {  top: 22px; left: 0;}
+
+#tab3 #div_2 { margin-top: 5px;  border: 1px solid #ACA899; }
+#tab3 #table table { border-collapse: collapse; margin: 2px;}
+
+#tab3 table th, #tab3 table td { border: solid 1.5px silver; width:100%; padding: 0 5px 0 5px; }
+#table-timtheokytudau  { margin-top: 1px;}
+#table-timtheokytudau > b { padding: 2px 7px 2px 7px; border: solid 1px silver;  height: 23px;
+    background: #F3F3F3; cursor: pointer; }
+#tab3 thead tr th { white-space: nowrap; font-size: 12px; padding: 2px 5px 2px 5px; cursor: pointer; background-color: #B0B0B0;}
+#tab3 thead tr th:hover { border-bottom: solid 3px #C24949;  padding-bottom: 0px; cursor: pointer; background: #D3F09E; }
+#tab3 #table-title ul li{ float: right; margin-left: 2px; padding: 0 0 2px 0;}
+#tab3 #tabel-title img:hover { border: 1px solid red;}
+#tab3 .icon-tb { cursor: pointer; }
+#tab3 tbody tr:hover {  background: #D3F09E; cursor: pointer; }
+#tab3 tbody .tablerowbg { background: #9FD8EF;}/* Màu cho các row*/
+#tong_kQ_tim_kiem { color: red;}
+
+
+/* Class JS dùng chung */
+#formdangkykhambenh{ min-width: 100%;}
+.borderRed { border: solid 1px red;}
+.divHide  * { display: none;}
+.divHide + * { background-color: white !important; padding: 4px 4px 10px 4px; color: black; border: solid 1px silver;}
+/* CSS cho mesage dialog*/
+.dialog { height: auto; width: 300px; border: solid 1px #D7410B; font-size: 13px; line-height: 17px;
+    text-align: center; color: white; position: fixed;}
+.dialog-caption {  background-color: #EBECED; color: #D7410B; padding: 6px 0 6px 0; cursor: move;}
+.dialog-caption * { height: 17px; display: inline-block; width: auto; text-shadow: 0 0 1px #fff; text-transform:uppercase;}
+.dialog-message { color: #404040; padding: 8px  ; background-color: white; font-size: 14px;}
+.dialog-footer { background-color: #EBECED; padding-top: 2px;}
+.dialog-footer >button { padding: 4px 8px 4px 8px; margin: 2px; border: solid 1px #888; display: inline-block; background-color: #4A9BD5; }
+.dialog-footer >button:hover {box-shadow: 0px 0px 1px 1px silver inset; cursor: pointer; text-shadow: 1px 0 2px #F87C66; opacity: 0.9;}
+.dialog-content { position: fixed; top: 0; left: 0; background-color: silver; opacity: 0.5; width: 100%; height: 100%;}
+

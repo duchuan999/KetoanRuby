@@ -1,0 +1,59 @@
+<%= javascript_include_tag '/assets/cyber/lib/jquery-2.0.3.min.js' %>
+<!-- Js multi language -->
+
+<%= javascript_include_tag '/assets/cyber/lib/js_lang.js' %>
+<link rel="stylesheet" href="/assets/cyber/lib/jquery-ui.css">
+<%= javascript_include_tag '/assets/cyber/lib/jquery-ui.js' %>
+<%= javascript_include_tag '/assets/cyber/lib/framework.js' %>
+<%= javascript_include_tag '/assets/cyber/lib/style.js' %>
+<link rel="stylesheet" href="/assets/cyber/lib/style.css">
+<div class="hethongtk">
+ <h2>THÔNG TIN TÀI KHOẢN</h2>
+  <hr>
+ <%= form_for(:dmhethongtk, :url => {:action => 'create'}) do |f| %>
+
+     <table class="new">
+         <tr>
+           <th>Mã :</th>
+           <!-- <td><input id = "ma" type="text" name="manhom" onkeypress="check(event,this)"/></td> !-->
+           <td><%= f.text_field(:sotk)  %></td>
+          </tr>
+          <tr>
+            <th>Tên :</th>
+            <td><%= f.text_field(:tentk)  %></td>
+          </tr>
+       <tr>
+         <th>Tên tiếng anh:</th>
+         <td><%= f.text_field(:tentienganh)  %></td>
+       </tr>
+       <tr>
+         <th>Thuộc nhóm :</th>
+         <td >
+
+             <%= text_field_tag :dmnhomtk,"",onkeyup:"thong_tin_nhomtk(this)", tab:1 %>
+
+         </td>
+       </tr>
+          <tr>
+            <th>Tính chất</th>
+            <td>
+              <%= f.select(:tinhchat,@dmtinhchattk.map{|s| [s.ten,s.id]}) %>
+            </td>
+          </tr>
+       <tr>
+         <th>Diễn giải</th>
+         <td>
+           <%= f.text_area(:diengiai) %>
+         </td>
+       </tr>
+       <tr>
+         <th></th>
+       <td>
+       <%= submit_tag("Lưu thông tin") %>
+       </td>
+       </tr>
+      </table>
+       <% end %>
+    <hr>
+    <%= link_to("<< Xem danh sách ", :action => 'index', :class => 'action index') %>
+  </div>

@@ -1,0 +1,132 @@
+<li><span class="folder" id="span_thaydoithongtin" key="thaydoithongtin">Thay đổi thông tin</span></li>
+<li><span class="folder" id="span_thaydoimatkhau" key="thaydoimatkhau">Thay đổi mật khẩu</span></li>
+<li><span class="folder" id="span_dangkydichvu" key="dangkydichvu">Đăng ký dịch vụ</span></li>
+<li class="closed"><span class="folder">MEDISOFT ONLINE CENTER</span>
+    <ul>
+        <li><span class="file" id="span_quantridonvi" key="quantridonvi">Quản trị Đơn vị</span></li>
+        <li><span class="file" id="span_quanlybenhnhan" key="quanlybenhnhan">Quản lý Bệnh nhân</span></li>
+        <li><span class="file" id="span_quanlyvienphi" key="quanlyvienphi">Quản lý Viện phí</span></li>
+        <li><span class="file" id="span_quanlyduoc" key="quanlyduoc">Quản lý Dược</span></li>
+        <li><span class="file" id="span_quanlycdha" key="quanlycdha">Quản lý CĐHA</span></li>
+        <li><span class="file" id="span_quanlyxn" key="quanlyxn">Quản lý Xét Nghiệm</span></li>
+        <li class="closed"><span class="folder">Quản lý Danh mục</span>
+            <ul>
+                <li><span class="file" id="span_khaibaobenhnhan" key="khaibaobenhnhan">Bệnh nhân</span></li>
+                <li><span class="file" id="span_khaibaovienphi" key="khaibaovienphi">Viện phí</span></li>
+                <li><span class="file" id="span_khaibaoduoc" key="khaibaoduoc">Dược</span></li>
+                <li><span class="file" id="span_khaibaocdha" key="khaibaocdha">CĐHA</span></li>
+                <li><span class="file" id="span_khaibaoxetnghiem" key="khaibaoxetnghiem">Xét nghiệm</span></li>
+            </ul>
+        </li>
+    </ul>
+</li>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // biến chứa các phần tử cần click của tree view
+        var phan_tu_click_treeview = "#span_thaydoithongtin, #span_thaydoimatkhau, #span_dangkydichvu, #span_quantridonvi, ";
+        phan_tu_click_treeview += "#span_quanlybenhnhan, #span_quanlyvienphi, #span_quanlyduoc, #span_quanlycdha, ";
+        phan_tu_click_treeview += "#span_quanlyxn, #span_khaibaobenhnhan, #span_khaibaoduoc, #span_khaibaovienphi, ";
+        phan_tu_click_treeview += "#span_khaibaocdha, #span_khaibaoxetnghiem";
+
+        // hàm sự kiện khi click vào các phần tử tree view
+        $(phan_tu_click_treeview).click(function () {
+            // thiết lập phần tử mặc định đc load vào
+            content_ajax = $("#load_ajax");
+
+            // lấy key
+            var key = $(this).attr('key');
+
+            // chứa giá trị đường dẫn
+            var path = '';
+
+            // so sánh key
+            switch (key) {
+                case 'thaydoithongtin':
+                    path = "/cyber/thaydoithongtin/index";
+                    break;
+                case 'thaydoimatkhau':
+                    path = "/cyber/thaydoimatkhau/index";
+                    break;
+                case 'dangkydichvu':
+                    path = "/cyber/dangkydichvu/index";
+                    break;
+                case 'quantridonvi':
+                    path = "/cyber/quantridonvi/index";
+                    break;
+                case 'quanlybenhnhan':
+                    path = "/assets/cyber/menu/_menu_qlbn.html";
+                    content_ajax = $("#container");
+                    break;
+                case 'quanlyvienphi':
+                    path = "/assets/cyber/menu/_menu_qlvp.html";
+                    content_ajax = $("#container");
+                    break;
+                case 'quanlyduoc':
+                    path = "/assets/cyber/menu/_menu_qld.html";
+                    content_ajax = $("#container");
+                    break;
+                case 'quanlycdha':
+                    // khai báo url
+                    //var url = '/cyber/cdha/index';
+
+                    // gán tiêu đề
+                    //tieude = "۞ Quản lý CĐHA ► Phiếu CĐHA";
+
+                    // gọi hiển thị dialog
+                    //hien_thi_dialog(url, tieude);
+
+                    path = "/assets/cyber/menu/_menu_qlcdha.html";
+                    content_ajax = $("#container");
+                    break;
+                case 'quanlyxn':
+                    // khai báo url
+                    //var url = '/cyber/xetnghiem/index';
+
+                    // gán tiêu đề
+                    //tieude = "۞ Quản lý Xét nghiệm ► Phiếu Xét nghiệm";
+
+                    // gọi hiển thị dialog
+                    //hien_thi_dialog(url, tieude);
+
+                    path = "/assets/cyber/menu/_menu_qlxn.html";
+                    content_ajax = $("#container");
+                    break;
+                case 'khaibaobenhnhan':
+                    path = "/assets/cyber/menu/_menu_kbbn.html";
+                    content_ajax = $("#container");
+                    break;
+                case 'khaibaoduoc':
+                    path = '/assets/cyber/menu/_menu_kbd.html';
+                    content_ajax = $("#container");
+                    break;
+                case 'khaibaovienphi':
+                    path = '/assets/cyber/menu/_menu_kbvp.html';
+                    content_ajax = $("#container");
+                    break;
+                case 'khaibaocdha':
+                    path = '/assets/cyber/menu/_menu_kbcdha.html';
+                    content_ajax = $("#container");
+                    break;
+                case 'khaibaoxetnghiem':
+                    path = '/assets/cyber/menu/_menu_kbxn.html';
+                    content_ajax = $("#container");
+                    break;
+            }
+
+            // xóa tất cả in đậm đã có
+            $(phan_tu_click_treeview).css('font-weight', '');
+
+            // in đậm phần từ vừa chọn
+            $(this).css('font-weight', 'bold')
+
+            // tải trang
+            if (path != '') {
+                tai_trang(path, content_ajax);
+            }
+        });
+
+        // tải treeview
+        $("#browser").treeview();
+    });
+</script>

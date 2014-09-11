@@ -1,0 +1,123 @@
+.middle > img {
+    width: 100%;
+}
+
+section {
+    min-height: 500px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+section .left {
+    width: 35%;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+section .left .text {
+    font-family: arial;
+}
+
+.text > p {
+    margin-top: 10px;
+}
+
+section .left .text img {
+    width: 15px;
+    vertical-align: middle;
+}
+
+section .left .text ul {
+    list-style-type: square;
+    margin-top: 10px;
+}
+
+section .left .text ul li {
+    list-style-type: square;
+    margin-left: 15px;
+}
+
+section .left .text .title {
+    color: #0c9f05;
+    font-weight: bold;
+    font-size: 12px;
+    color: #0C9F05;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+section .middle {
+    height: 230px;
+    min-width: 330px;
+    padding-top: 20px;
+    width: 37%;
+}
+
+section .right {
+    border: 4px solid #D6D3CE;
+    height: 100%;
+    margin: 20px 10px;
+    padding: 10px;
+    width: 20%;
+    float: right;
+}
+
+section .right .text {
+    background-color: #E3E3E3;
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+    border: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+section .right .text .text1 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+section .right .text .text2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+}
+
+section form {
+    padding-top: 15px;
+}
+
+.vd {
+    font-size: 12px;
+    color: #CCCACA;
+    font-weight: bold;
+}
+
+.remenber {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.forget {
+    font-size: 12px;
+    color: #616EBA;
+    float: left;
+}
+
+#lnkDangKy {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: red;
+}
+
+#sbmDangNhap {
+    border: none;
+    background: #4B596A;
+    color: #FFFFFF;
+    float: right;
+    margin-bottom: 5px;
+}

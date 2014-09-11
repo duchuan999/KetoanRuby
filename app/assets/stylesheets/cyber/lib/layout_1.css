@@ -1,0 +1,149 @@
+/********Main Setting********/
+#wrap {
+    width: 100%;
+    min-width: 1008px;
+    /*max-width: 1280px;*/
+    height: auto;
+}
+
+body {
+    color: #333333;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 19.5px;
+}
+
+/*****Header*****/
+header {
+    background: none repeat-x scroll 0 0 #718BA6;
+    height: 45px;
+    width: 100%;
+}
+
+header .logo {
+    float: left;
+}
+
+header .logo img {
+    vertical-align: middle;
+}
+
+header .slogan {
+    float: left;
+    height: 40px;
+    margin-top: 5px;
+    text-indent: 5px;
+    width: 55%;
+}
+
+header .slogan .slogan_1 {
+    color: yellow;
+    font-weight: bold;
+}
+
+header .slogan .slogan_2 {
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+header .slogan1 span, #header .slogan_2 span {
+    font-weight: bold;
+}
+
+header .lang {
+    color: #FFFFFF;
+    float: right;
+    font-size: 12px;
+    height: 45px;
+    line-height: 15px;
+    padding: 0 5px;
+}
+
+header .lang a {
+    color: #FFF;
+}
+
+header .lang img {
+    vertical-align: middle;
+}
+
+.nav {
+    background-color: #F2F2F2;
+    border-bottom: 2px solid #807878;
+    clear: both;
+    height: 22px;
+    width: 100%;
+}
+
+/***********Article Content***********/
+.left, .middle, .right {
+    display: block;
+    float: left;
+}
+
+section {
+    min-height: 500px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+/*****Button-Input*****/
+input {
+    vertical-align: bottom;
+}
+
+button {
+    background-color: #91795E;
+    padding: 5px 5px 0px 0px;
+    vertical-align: top;
+    padding-top: 0px;
+}
+
+button div {
+    float: right;
+}
+
+button img {
+    margin-right: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #634b30), color-stop(1, #7d5d3b));
+    background: -moz-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+    background: -webkit-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+    background: -o-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+    background: -ms-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+    background: linear-gradient(to bottom, #634b30 5%, #7d5d3b 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#634b30', endColorstr='#7d5d3b', GradientType=0);
+    background-color: #634b30;
+}
+
+button:active {
+    position: relative;
+    top: 1px;
+}
+
+input[disabled="disabled"] {
+    background: #e6e6fa !important;
+}
+
+/*text box, pasword box, text area*/
+input[type="text"], input[type="password"], textarea {
+    background: #F9F9F9;
+    border: solid 1px #736357;
+    width: 100%;
+    resize: none;
+}
+
+/********Footer********/
+footer {
+    bottom: 0px;
+    position: fixed;
+    width: 100%;
+    height: auto;
+    background-color: #f2f2f2;
+    border-top: #807878 solid 2px;
+    font-size: 14px;
+}

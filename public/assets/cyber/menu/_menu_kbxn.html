@@ -1,0 +1,150 @@
+<ul>
+    <li><a href="#" class="title" style="color: #ff0000">Khai báo Danh mục ► Xét nghiệm ►</a></li>
+    <li class="li_title"><a href="#" class="title">Tiện ích</a>
+        <ul>
+            <li><a href="#" class="innerchild">Danh mục</a>
+                <ul>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_xetnghiem" key="kbxn_dm_xn">Xét nghiệm</a></li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_donvido" key="kbxn_dm_dvd">Đơn vị đo</a></li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_donvidohl7" key="kbxn_dm_dvdhl7">Đơn vị đo (HL7)</a>
+                    </li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_vitrung" key="kbxn_dm_vt">Vi trùng</a></li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_khangsinh" key="kbxn_dm_ks">Kháng sinh</a></li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_mauthu" key="kbxn_dm_mt">Mẫu thử</a></li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_vitritrencothe" key="kbxn_dm_vttct">Vị trí trên cơ
+                        thể</a></li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_viettatketquaxetnghiem" key="kbxn_dm_vtkqxn">Viết tắt
+                        kết quả xét nghiệm</a></li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_danhmucvatchuabenhpham" key="kbxn_dm_dmvcbp">Danh mục
+                        vật chứa bệnh phẩm</a></li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_danhmucnoiguimau" key="kbxn_dm_dmngm">Danh mục nơi
+                        gởi mẫu</a></li>
+                    <li><a href="#" class="child" id="kbxn_danhmuc_donvidinhmuc" key="kbxn_dm_dvdm">Đơn vị định mức</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#" class="innerchild">Khai báo sử dụng</a>
+                <ul>
+                    <li><a href="#" class="child" id="kbxn_khaibaosudung_soxetnghiem" key="kbxn_kbsd_sxn">Sổ xét
+                        nghiệm</a></li>
+                    <li><a href="#" class="child" id="kbxn_khaibaosudung_bokhamsinh" key="kbxn_kbsd_bks">Bộ khám
+                        sinh</a></li>
+                    <li><a href="#" class="child" id="kbxn_khaibaosudung_mauthutheoxetnghiem" key="kbxn_kbsd_mttxn">Mẫu
+                        thử theo xét nghiệm</a></li>
+                    <li><a href="#" class="child" id="kbxn_khaibaosudung_dinhmuchoachat" key="kbxn_kbsd_dmhc">Định mức
+                        hóa chất</a></li>
+                    <li><a href="#" class="child" id="kbxn_khaibaosudung_kythuatvienxetnghiem" key="kbxn_kbsd_ktvxn">Kỹ
+                        thuật viên xét nghiệm</a></li>
+                    <li><a href="#" class="child" id="kbxn_khaibaosudung_diadiemlaymau" key="kbxn_kbsd_ddlm">Địa điểm
+                        lấy mẫu trong bệnh viện</a></li>
+                    <li><a href="#" class="child" id="kbxn_khaibaosudung_khaibaoviettat" key="kbxn_kbsd_kbvt">Khai báo
+                        viết tắt</a></li>
+                    <li><a href="#" class="child" id="kbxn_khaibaosudung_khaibaoviettatketqua" key="kbxn_kbsd_kbvtkq">Khai
+                        báo viết tắt kết quả</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="" id="kbxn_khaibaothongsomayxetnghiem">Khai báo thông số máy xét nghiệm</a></li>
+        </ul>
+    </li>
+</ul>
+
+<script type="text/javascript" src="/assets/cyber/menu/_menu.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // thiết lập hình mũi tên khi menu có level 2
+        $("ul li .innerchild").css({
+            'background-image': 'url(\'/assets/cyber/icon/Arrow_right.gif\')',
+            'background-repeat': 'no-repeat',
+            'background-position': 'right 9px'
+        });
+
+        // khai báo các button cần click
+        // danh mục
+        var button_click = "#kbxn_danhmuc_xetnghiem, #kbxn_danhmuc_donvido, #kbxn_danhmuc_donvidohl7, #kbxn_danhmuc_vitrung, ";
+        button_click += "#kbxn_danhmuc_khangsinh, #kbxn_danhmuc_mauthu, #kbxn_danhmuc_vitritrencothe, #kbxn_danhmuc_viettatketquaxetnghiem, ";
+        button_click += "#kbxn_danhmuc_danhmucvatchuabenhpham, #kbxn_danhmuc_danhmucnoiguimau, #kbxn_danhmuc_donvidinhmuc, ";
+        button_click += "#kbxn_khaibaosudung_soxetnghiem, #kbxn_khaibaosudung_bokhamsinh, #kbxn_khaibaosudung_mauthutheoxetnghiem, ";
+        button_click += "#kbxn_khaibaosudung_dinhmuchoachat, #kbxn_khaibaosudung_kythuatvienxetnghiem, #kbxn_khaibaosudung_diadiemlaymau, ";
+        button_click += "#kbxn_khaibaosudung_khaibaoviettat, #kbxn_khaibaosudung_khaibaoviettatketqua, #kbxn_khaibaothongsomayxetnghiem";
+
+        $(button_click).click(function () {
+            // khai báo tiêu đề dialog, và url cho iframe
+            var tieude = '';
+            var url = '';
+
+            // lấy thuộc tính key
+            var key = $(this).attr('key');
+
+            // so sánh key
+            switch (key) {
+                // tiếp nhận
+                case 'kbxn_dm_xn':
+                    url = '/danhmuc/xetnghiem/tienich/xetnghiem/index';
+                    break;
+                case 'kbxn_dm_dvd':
+                    url = '/danhmuc/xetnghiem/tienich/donvido/index';
+                    break;
+                case 'kbxn_dm_dvdhl7':
+                    url = '/danhmuc/xetnghiem/tienich/donvidohl/index';
+                    break;
+                case 'kbxn_dm_vt':
+                    url = '/danhmuc/xetnghiem/tienich/vitrung/index';
+                    break;
+                case 'kbxn_dm_ks':
+                    url = '/danhmuc/xetnghiem/tienich/khangsinh/index';
+                    break;
+                case 'kbxn_dm_mt':
+                    url = '/danhmuc/xetnghiem/tienich/mauthu/index';
+                    break;
+                case 'kbxn_dm_vttct':
+                    url = '/danhmuc/xetnghiem/tienich/vitritrencothe/index';
+                    break;
+                case 'kbxn_dm_vtkqxn':
+                    url = '/danhmuc/xetnghiem/tienich/viettatkqxn/index';
+                    break;
+                case 'kbxn_dm_dmvcbp':
+                    url = '/danhmuc/xetnghiem/tienich/dmvatchuabp/index';
+                    break;
+                case 'kbxn_dm_dmngm':
+                    url = '/danhmuc/xetnghiem/tienich/dmnoigoimau/index';
+                    break;
+                case 'kbxn_dm_dvdm':
+                    url = '/danhmuc/xetnghiem/tienich/donvidinhmuc/index';
+                    break;
+                case 'kbxn_kbsd_sxn':
+                    url = '';
+                    break;
+                case 'kbxn_kbsd_bks':
+                    url = '';
+                    break;
+                case 'kbxn_kbsd_mttxn':
+                    url = '';
+                    break;
+                case 'kbxn_kbsd_dmhc':
+                    url = '';
+                    break;
+                case 'kbxn_kbsd_ktvxn':
+                    url = '';
+                    break;
+                case 'kbxn_kbsd_ddlm':
+                    url = '';
+                    break;
+                case 'kbxn_kbsd_kbvt':
+                    url = '';
+                    break;
+                case 'kbxn_kbsd_kbvtkq':
+                    url = '';
+                    break;
+                case 'kbxn_khaibaothongsomayxetnghiem':
+                    url = '';
+                    break;
+            }
+
+            // gán tiêu đề
+            tieude = '۞ ' + $(this).closest('.li_title').children().eq(0).text() + " ► " + $(this).text();
+
+            // gọi hiển thị dialog
+            hien_thi_dialog(url, tieude);
+        });
+    });
+</script>

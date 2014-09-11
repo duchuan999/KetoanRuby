@@ -1,0 +1,56 @@
+.input-text-report{
+	background: none;  float: left;
+	border-bottom: dotted 1px silver !important ;
+}
+/* ######################
+	Style Hồ sơ bệnh án 
+ ###################### */
+ #benhan-wrapper, #benhan_header, #benhanan_title, #report_header, #report_wrapper { min-width: 800px; }
+ /* Phần header của report */
+#report_wrapper { margin-bottom: 20px; background: url('/assets/cyber/icon/bgba.gif');    position: relative;}
+#report_wrapper span { line-height: 22px;}
+#report_wrapper > div:not(:first-child) { display: none;}
+#report_wrapper input { background-color: white;}
+#report_wrapper table td{ font-size: 8.45pt; position: relative; border: 0.5px solid black;padding: 5px;}
+#report_wrapper table{  border-collapse:collapse; }
+    
+#benhanan_title { height: 30px; background: #009A93; padding-left: 10px; line-height: 30px; color: white;}
+
+#benhan_header { background-color: #DCE5F4; padding: 2px;}
+#report_header > label { font-family: Arial,'Times New Roman'; font-size: 8.25pt; width: 60px !important; }
+#report_header > div:first-child { padding: 10px 0px 10px 10px;   text-align: left; }
+#report_header > div:nth-child(2)  { text-align: center;	font-size: 16px; line-height: 100%; font-weight: bold; padding-top: 25px; }
+#report_header > div:last-child { padding-top: 10px;}
+#report_header input[type="text"]   { font-size: 8.25pt; height: 19px !important; }
+
+/* nhóm các input text */
+.group-input { margin-right: 10px; display: inline-block;}
+#report_wrapper  .small-input { border: solid 1px silver; height: 19px !important; float: left; width: 20px; margin: 0 1px 0 1px;
+display: inline-block; text-align: center;}
+.group-input  span { display: inline-block; float: left; padding: 0 6px 0 0;}
+
+/* Tab thong tin hanh chính*/
+#report_wrapper {  padding: 6px;}
+#report_wrapper .input-edit { background: none; border-bottom: dotted 1px silver;}
+#report_wrapper .input-edit:focus { background: #DCDCDC; }
+
+#report_wrapper textarea { background: url("/assets/cyber/icon/bg_multitext.gif"); padding: 0 10px 0 10px; line-height: 18px; font-size: 8.25pt;
+ border: none; content: "."; margin: 8px 0 8px 0; color: #002AFF;}
+#report_wrapper textarea:focus  { background-color: #DCDCDC;} 
+div { background-size: 100% 100%;}
+#group1 > div { height: 20px; margin: 1px 0 3px 0;}
+#group3 .MauKyTen > div { padding: 5px; text-align: center; margin: 4px 0 4px 0; color: #0000FF; line-height: 20px; 
+	font-size:  8.25pt; background: #D6D6D6; height: 30px; cursor: pointer;}
+#group3 .MauKyTen > div > input { text-align: center !important; border: dotted 1px silver;  width: 100%;
+	background: #D6D6D6; }
+#group3 .MauKyTen > div > input:focus { border: solid 1px black; background: white; }
+/* Hiển thị gợi ý trong các input text khi focus vào*/
+
+
+/* Chung */
+
+
+/*Tab Chọn Bệnh Án*/
+#chonbenhan .field { padding: 10px 0 10px 15px; margin: 2px 0 2px 0; background: #B452FD; color: white; font-weight: bold;}
+#chonbenhan .field:hover { background-color: silver; cursor: pointer;}
+#chonbenhan .field:first-child + .field { border-right: solid 1px black; border-left: solid 1px black;}
