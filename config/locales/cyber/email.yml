@@ -1,0 +1,10 @@
+# note: có thể lúc đầu gửi được, nhưng lúc sau có thể báo lỗi Permission denied - connect(2)
+# lý do là do phương thức gửi smtp của gmail chặn lại
+config_email:
+  :address: smtp.gmail.com
+  :port: 465
+  :authentication: plain
+  :domain: st.com
+  :user_name: son.nguyen@medisoft.vn
+  :password: Links1920
+  :enable_starttls_auto: true

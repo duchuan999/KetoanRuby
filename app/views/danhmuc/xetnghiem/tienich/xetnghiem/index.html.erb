@@ -1,0 +1,2602 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html" charset="utf8"/>
+
+<!--<link rel="stylesheet" href="/assets/cyber/lib/reset.css">-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/assets/cyber/lib/flexigrid.pack.css">
+<style>
+    ul, ol, dl, li, dt, dd, h1, h2, h3, h4, h5, h6, form, body, html, p, blockquote, fieldset, input, object, iframe {
+        margin: 0;
+        padding: 0;
+    }
+
+    a img, :link img, :visited img {
+        border: none;
+    }
+
+    .toolbarTabs {
+        padding: 0 5px 2px 2px;
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: left -70px;
+        overflow: visible;
+    }
+
+    .tab-menu {
+        padding-top: 1px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        line-height: 16px;
+        font-size: 11px;
+    }
+
+    .tab-menu li {
+        display: block;
+        float: left;
+        margin: 0 0 5px 0;
+        cursor: pointer;
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: left -35px;
+    }
+
+    .tab-menu li.selected {
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: left 0;
+    }
+
+    .tab-menu li a {
+        display: block;
+        margin-left: 8px;
+        padding: 6px 15px 5px 9px;
+        text-align: center;
+        font-weight: normal;
+        color: #181818;
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: right -35px;
+    }
+
+    .tab-menu li.selected a {
+        color: #0000FF; /*#181818;*/
+        font-weight: bold;
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: right 0;
+    }
+
+    ._dis {
+        background-color: transparent !important;
+        color: #03f !important;
+        border-left: solid 1px #f0f0f0 !important;
+        border-top: solid 1px #f0f0f0 !important;
+        border-right: solid 1px #f0f0f0 !important;
+        border-bottom: dotted 1px #666 !important;
+    }
+
+    .cm_button_bg {
+        background: url(/assets/cyber/icon/cm_button_bg.jpg)
+    }
+
+    .cm_form {
+        background-color: #F0F0F0;
+        background-image: url(/assets/cyber/icon/cm_form_bg.jpg);
+        background-position: 1px top;
+        background-repeat: repeat-y;
+        background-attachment: scroll;
+        border-left: solid 1px #ACA899;
+        border-top: solid 1px #ACA899;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    .cm_label {
+        font-size: 12px;
+        font-weight: 400;
+        color: #03f;
+        text-decoration: none;
+        text-align: right;
+        vertical-align: bottom;
+        cursor: pointer
+    }
+
+    .cm_label:hover, .cm_label:focus, .cm_label:active {
+        color: red;
+        text-decoration: underline;
+        cursor: pointer
+    }
+
+    .cm_cb_down, .cm_cb_down, .cm_cb_down {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_cb_down.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 20px;
+        border-left: solid 0 #B5B7BD;
+        border-top: solid 0 #ABADB3;
+        border-right: solid 0 #B5B7BD;
+        border-bottom: solid 0 #B5B7BD
+    }
+
+    .cm_cb_down:hover, .cm_cb_down:active, .cm_cb_down:focus {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_cb_down_over.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 20px;
+        border-left: solid 0 #93C6E9;
+        border-top: solid 0 #5794BF;
+        border-right: solid 0 #93C6E9;
+        border-bottom: solid 0 #93C6E9
+    }
+
+    .cm_cb_down_dis, .cm_cb_down_dis, .cm_cb_down_dis {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_cb_down_dis.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 20px;
+        border-left: solid 0 #B5B7BD;
+        border-top: solid 0 #ABADB3;
+        border-right: solid 0 #B5B7BD;
+        border-bottom: solid 0 #B5B7BD
+    }
+
+    .cm_cb_down_dis:hover, .cm_cb_down_dis:active, .cm_cb_down_dis:focus {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_cb_down_dis.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 20px;
+        border-left: solid 0 #93C6E9;
+        border-top: solid 0 #5794BF;
+        border-right: solid 0 #93C6E9;
+        border-bottom: solid 0 #93C6E9
+    }
+
+    .cm_bt_new {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_new.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 20px
+    }
+
+    .cm_bt_edit {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_edit.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_edit_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_edit.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_save {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_save.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_save_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_save.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_cancel {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_cancel.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_cancel_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_cancel.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_copy {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_copy.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_copy_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_copy.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_delete {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_delete.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_delete_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_delete.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_print {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_print.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 24px
+    }
+
+    .cm_bt_print_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_print.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 24px
+    }
+
+    .cm_bt_printcard {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_printcard.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 24px
+    }
+
+    .cm_bt_printcard_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_printcard.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 24px
+    }
+
+    .cm_bt_close {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_close.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_close_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_close.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_dcell_c_nopad {
+        border-left: solid 0 #D0D0D0;
+        border-top: solid 0 #D0D0D0;
+        border-right: solid 1px #D0D0D0;
+        border-bottom: solid 1px #D0D0D0;
+        text-align: center;
+        vertical-align: middle;
+        padding: 0
+    }
+
+    .cm_dg_header {
+        border: solid 0px #F0F0F0;
+        font-weight: bold;
+        vertical-align: middle;
+        padding-left: 5px;
+    }
+
+    .cm_button_bg {
+        background: url('/assets/cyber/icon/cm_button_bg.jpg');
+    }
+
+    .cm_dg_bt_print {
+        background-color: transparent;
+        background-image: url('/assets/cyber/icon/cm_tb_print.png');
+        background-position: center center;
+        border: solid 1px #A0A0A0;
+        cursor: pointer;
+        width: 17px;
+        height: 17px;
+    }
+
+    .cm_dg_bt_print:hover {
+        border: solid 1px #FF0000;
+    }
+
+    .cm_input_dg_ct_filter {
+        background-image: url('/assets/cyber/icon/cm_dg_bt_filter.png');
+        background-position: right 1px;
+        background-repeat: no-repeat;
+        color: #ACA899;
+        padding-left: 2px;
+        width: 120px;
+        border: solid 1px #7F9DB9;
+    }
+
+    .cm_input_dg_ct_filter:hover {
+        color: #03f;
+        background-color: #FFC;
+    }
+
+    .cm_dg_bt_viewstyle_detail, .cm_dg_bt_viewstyle_thumb, .cm_dg_bt_viewstyle_icon {
+        background-position: center center;
+        background-repeat: no-repeat;
+        border: solid 1px #A0A0A0;
+        cursor: pointer;
+        width: 19px;
+        height: 17px;
+    }
+
+    .cm_dg_bt_viewstyle_detail {
+        background-image: url('/assets/cyber/icon/cm_dg_bt_viewstyle_detail.png');
+    }
+
+    .cm_dg_bt_viewstyle_icon {
+        background-image: url('/assets/cyber/icon/cm_dg_bt_viewstyle_icon.png');
+        margin: 0px 3px 0px 3px;
+    }
+
+    .cm_dg_bt_viewstyle_thumb {
+        background-image: url('/assets/cyber/icon/cm_dg_bt_viewstyle_thumb.png');
+    }
+
+    .cm_dg_bt_viewstyle_detail:hover, .cm_dg_bt_viewstyle_thumb:hover, .cm_dg_bt_viewstyle_icon:hover,
+    .cm_dg_bt_viewstyle_thumb:hover {
+        border: solid 1px #FF0000;
+    }
+
+    .cm_refresh {
+        background-image: url('/assets/cyber/icon/cm_refresh.gif');
+        background-position: center center;
+        background-repeat: no-repeat;
+        border: solid 0 #FFF;
+        cursor: pointer;
+        width: 20px;
+    }
+
+    .cm_refresh:hover {
+        background-color: #C0DDFC;
+    }
+
+    .cm_input_dg_ct_search {
+        background-color: #FFF;
+        color: #ACA899;
+        padding-left: 2px;
+        width: 120px;
+        border: solid 1px #7F9DB9;
+    }
+
+    .cm_input_dg_ct_search:hover {
+        color: #03f;
+        background-color: #FFC;
+    }
+
+    .cm_input_dg_bt_search {
+        background-color: #F0F0F0;
+        background-image: url('/assets/cyber/icon/cm_dg_bt_search.png');
+        background-position: center 1px;
+        background-repeat: no-repeat;
+        width: 20px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+    }
+
+    .cm_input_dg_bt_search:hover {
+        background-color: #E0E0E0;
+        border: solid 1px #7F9DBF;
+    }
+
+    .cm_dg_bt_alpha {
+        background-color: #F0F0F0;
+        border: solid 1px #B0B0B0;
+        text-decoration: underline;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .cm_dg_bt_alpha:hover {
+        background-color: #d0e2fc;
+        color: red;
+    }
+
+    .cm_label {
+        font-weight: 400;
+        color: #03f;
+        text-decoration: none;
+        text-align: right;
+        vertical-align: bottom;
+        cursor: pointer
+    }
+
+    .cm_label:hover {
+        color: red;
+        text-decoration: underline;
+    }
+
+    .totalrecord {
+        text-align: right;
+        padding: 4px 5px 0px 0px;
+    }
+
+    .content {
+        overflow: auto;
+    }
+
+    .cm_bt_lang {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_lang.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 20px
+    }
+
+    .cm_bed {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bed.png);
+        background-position: 4px center;
+        background-repeat: no-repeat;
+        cursor: pointer
+    }
+
+    .cm_bed:hover, .cm_bed:active, .cm_bed:focus {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bed_hover.png);
+        background-position: 4px center;
+        background-repeat: no-repeat;
+        cursor: pointer
+    }
+
+    .cm_calendar {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_calendar.gif);
+        background-position: left center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 22px;
+        height: 15px;
+        border: solid 0 #000
+    }
+
+    .cm_calendar {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_calendar.gif);
+        background-position: left center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 22px;
+        height: 15px;
+        border: solid 0 #000
+    }
+
+    .cm_cal {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_calendar.gif);
+        background-position: 4px center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+    .cm_pager {
+        text-decoration: underline;
+        text-align: center;
+        height: 100%;
+        background-color: Transparent;
+        border-left: solid 0 #FFF;
+        border-top: solid 0 #FFF;
+        border-right: solid 0 #ACA899;
+        border-bottom: solid 0 #ACA899;
+        padding: 0 4px 0 3px
+    }
+
+    .cm_pager:hover, .cm_pager:active, .cm_pager:focus {
+        background-color: #C0DDFC;
+        border-left: solid 0 #ACA899;
+        border-top: solid 0 #ACA899;
+        border-right: solid 0 #FFF;
+        border-bottom: solid 0 #FFF
+    }
+
+    .cm_input_dg_pagesize {
+        font-size: 12px;
+        font-weight: 700;
+        background-color: #FFF;
+        color: #03f;
+        text-align: center;
+        text-decoration: underline;
+        width: 35px;
+        height: 100%;
+        border-left: solid 0 #7F9DB9;
+        border-top: solid 0 #7F9DB9;
+        border-right: solid 0 #7F9DB9;
+        border-bottom: solid 0 #7F9DB9;
+        vertical-align: bottom
+    }
+
+    .cm_input_dg_pagesize:hover, .cm_input_dg_pagesize:active, .cm_input_dg_pagesize:focus {
+        color: red;
+        background-color: #FFC;
+        border-left: solid 0 #7F9DBF;
+        border-top: solid 0 #7F9DBF;
+        border-right: solid 0 #7F9DBF;
+        border-bottom: solid 0 #7F9DBF
+    }
+
+    .cm_bt_sync {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_sync.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 20px
+    }
+
+    .cm_bt_sync_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_sync.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 20px
+    }
+
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript" src="/assets/cyber/lib/flexigrid.pack.js"></script>
+<script type="text/javascript" src="/assets/cyber/lib/framework.js"></script>
+<script type="text/javascript" src="/assets/cyber/khambenh/phieukhambenh.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // hiển thị flexigrid tab 2
+        $("#tab2 .danhsachhienhanh").flexigrid({
+            colModel: [
+                { display: 'STT', name: '', width: 90, sortable: true, align: 'center' },
+                { display: 'Mã', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Tên', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Đơn vị', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Chỉ số bình thường nữ', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Max CSBT Nữ', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Min CSBT Nữ', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Chỉ số bình thường nam', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Max CSBT Nam', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Min CSBT Nam', name: '', width: 120, sortable: true, align: 'center' }
+            ],
+            useRp: true,
+            rp: 15,
+            showTableToggleBtn: true
+        });
+
+        // thiết lập độ cao cho tab 2
+        $('#tab2').css('height', $(window).height() - 100);
+
+        // hàm định nghĩa resize div content trong panel 1
+        function resize_tab2_divcontent() {
+            // thiết lập độ cao cho div content
+            var kq = $('#tab2').height() - $('#tab2 .cm_button_bg').height() - $('#tab2 .buttonalpha').height() - $('#tab2 .totalrecord').height() - 22;
+            $('.flexigrid .bDiv').height(kq);
+        }
+
+        // thiết lập độ cao cho tab 3
+        $('#tab3 .div_wrapper').css('height', $(window).height() - 90);
+
+        // hiển thị flexigrid
+        $("#tab3 .danhsachviettatthamkhao").flexigrid({
+            colModel: [
+                { display: 'STT', name: '', width: 90, sortable: true, align: 'center' },
+                { display: 'Mã', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Tên', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Đơn vị', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Chỉ số bình thường nữ', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Max CSBT Nữ', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Min CSBT Nữ', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Chỉ số bình thường nam', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Max CSBT Nam', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Min CSBT Nam', name: '', width: 120, sortable: true, align: 'center' }
+            ],
+            useRp: true,
+            rp: 15,
+            showTableToggleBtn: true
+        });
+
+        // thiết lập độ cao cho tab 2
+        $('#tab3').css('height', $(window).height() - 100);
+
+        // hàm định nghĩa resize div content trong panel 1
+        function resize_tab3_divcontent() {
+            var kq = $('#tab3').height() - $('#tab3 .cm_button_bg').height() - $('#tab3 .buttonalpha').height() - $('#tab3 .totalrecord').height() - 22;
+            $('.flexigrid .bDiv').height(kq);
+        }
+
+        // sự kiện khi click tab sẽ kích hoạt resize
+        $("#tabs").tabs({
+            // sự kiện khi tab được chọn
+            activate: function (event, ui) {
+                // kiểm tra tab thứ 2 được chọn
+                if (ui.newTab.index() == 1) {
+                    // gọi hàm resize div content
+                    resize_tab2_divcontent();
+                }
+
+                // kiểm tra tab thứ 3 được chọn
+                if (ui.newTab.index() == 2) {
+                    // gọi hàm resize div bDiv
+                    resize_tab3_divcontent();
+                }
+            }
+        });
+
+        // sự kiện khi window resize
+        $(window).resize(function () {
+            // gọi hàm resize div content tab 2
+            resize_tab2_divcontent();
+
+            // gọi hàm resize div bDiv tab 2
+            resize_tab2_bDiv_flexigrid();
+
+            // gọi hàm resize div bDiv tab 3
+            resize_tab3_bDiv_flexigrid();
+        });
+    });
+</script>
+</head>
+
+<body>
+<!--định nghĩa tab-->
+<div id="tabs">
+<ul>
+  <li>
+    <a href="#tabs-1">
+      Thông tin chi tiết
+    </a>
+  </li>
+  <li>
+    <a href="#tabs-2">
+      Danh sách hiện hành
+    </a>
+  </li>
+  <li>
+    <a href="#tabs-3">
+
+      Danh sách tham khảo
+    </a>
+  </li>
+  <li>
+    <a href="#tabs-4">
+      Hướng dẫn
+    </a>
+  </li>
+</ul>
+
+<!--tab 1-->
+<div id="tabs-1">
+  <style>
+      #tab1 input[type='text'] {
+          width: 100%;
+          border: 1px solid #b5b7bd;
+          background-color: #fff;
+      }
+
+      #tab1 table {
+          width: 100%;
+      }
+
+      #tab1 table tr td {
+          padding: 0px 1px 0px 1px;
+      }
+
+      #tab1 .tdcontent3 ul li {
+          text-decoration: underline;
+          padding-bottom: 5px;
+      }
+
+      #tab1 .tdcontent1, #tab1 .tdcontent2 {
+
+          background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(6%, rgba(246, 246, 246, 0.99)), color-stop(100%, rgba(237, 237, 237, 0.88))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* IE10+ */
+          background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e0ededed', GradientType=1); /* IE6-9 */
+      }
+  </style>
+
+  <div id="tab1" style="margin-top: 5px">
+    <table>
+      <tr>
+        <td class="cm_button_bg" style="width: 100%" colspan="2">
+          <table id="ct_form_page1_toolbar_bg" border="0" cellpadding="0" cellspacing="1" align="left" style="height:100%; width:0%">
+            <tbody>
+            <tr>
+              <td>
+                <input id="ct_form_page1_bt_new" type="button" class="cm_bt_new" classroot="cm_bt_new" readonly="" value="Mới" tooltip="Mới" onclick="" onkeypress="">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_save" type="button" class="cm_bt_save_dis" classroot="cm_bt_save" readonly="" value="Lưu" tooltip="Lưu" onclick="" onkeypress="" disabled="">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_cancel" type="button" class="cm_bt_cancel_dis" classroot="cm_bt_cancel" readonly="" value="Bỏ qua" tooltip="Bỏ qua" onclick="" onkeypress="" disabled="">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_edit" type="button" class="cm_bt_edit_dis" classroot="cm_bt_edit" readonly="" value="Sửa" tooltip="Sửa" onclick="" onkeypress="" disabled="">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_delete" type="button" class="cm_bt_delete_dis" classroot="cm_bt_delete" readonly="" value="Xóa" tooltip="Xóa" onclick="" onkeypress="" disabled="">
+              </td>
+
+              <td>
+                <input id="ct_form_page1_bt_lang" type="button" class="cm_bt_lang" classroot="cm_bt_lang" readonly="" value="Ngôn ngữ" tooltip="Ngôn ngữ" onclick="ct_form_page1_bt_click(this);" onkeypress="ct_form_page1_keypress(event,this);">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_close" type="button" class="cm_bt_close" classroot="cm_bt_close" readonly="" value="Kết thúc" tooltip="Kết thúc" onclick="" onkeypress="">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="tdcontent1" style="vertical-align: top;">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+            <tr>
+              <td style="padding-top:0px;">
+                <div class="cm_form" style="padding:3px;padding-bottom:268px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                    <tbody>
+                    <tr>
+                      <td style="padding-top:5px;">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">&nbsp;</td>
+                            <td><b><u>THÔNG TIN XÉT NGHIỆM</u></b></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Mã:</td>
+                            <td style="width:180px;">
+                              <input id="ct_form_page1_ma" type="text" style="width:100%;" selectedvalue="" title="Để trống hệ thống tự cấp!" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td style="width:120px;text-align:right;">Số thứ tự:&nbsp;</td>
+                            <td>
+                              <input id="ct_form_page1_stt" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Tên:*</td>
+                            <td>
+                              <input id="ct_form_page1_ten" type="text" style="width:100%;text-transform: none;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Viết tắt:</td>
+                            <td>
+                              <input id="ct_form_page1_viettat" type="text" style="width:100%;text-transform: none;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Đơn vị:</td>
+                            <td style="width:162px;">
+                              <input id="ct_form_page1_donvi" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td class="cm_cb_down_dis" id="ct_form_page1_donvi_filter" onclick="ct_form_page1_filter_click(this);">&nbsp;</td>
+                            <td style="width:120px;text-align:right;">Tiêu bản:&nbsp;</td>
+                            <td>
+                              <input id="ct_form_page1_tieuban" type="text" style="width:100%;text-transform: none;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr style="height:30px;">
+                            <td style="width:120px;">&nbsp;</td>
+                            <td style="width:180px;font-weight:bold;">Bình thường Nữ</td>
+                            <td style="width:120px;text-align:right;">&nbsp;</td>
+                            <td style="font-weight:bold;">Bình thường Nam</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Giá trị BT:</td>
+                            <td style="width:180px;">
+                              <input id="ct_form_page1_btnu" type="text" style="width:100%;" selectedvalue="" title="Để trống hệ thống tự cấp!" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td style="width:120px;text-align:right;">Giá trị BT:&nbsp;</td>
+                            <td>
+                              <input id="ct_form_page1_btnam" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Min:</td>
+                            <td style="width:60px;">
+                              <input id="ct_form_page1_btnu_min" type="text" style="width:100%;" selectedvalue="" title="Để trống hệ thống tự cấp!" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td style="width:60px;text-align:right;">Max:&nbsp;</td>
+                            <td style="width:60px;">
+                              <input id="ct_form_page1_btnu_max" type="text" style="width:100%;" selectedvalue="" title="Để trống hệ thống tự cấp!" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td style="width:120px;text-align:right;">Min:&nbsp;</td>
+                            <td style="width:60px;">
+                              <input id="ct_form_page1_btnam_min" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td style="width:60px;text-align:right;">Max:&nbsp;</td>
+                            <td>
+                              <input id="ct_form_page1_btnam_max" type="text" style="width:100%;" selectedvalue="" title="Để trống hệ thống tự cấp!" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Giá trị nguy cấp:</td>
+                            <td>
+                              <input id="ct_form_page1_gtnguycap" type="text" style="width:100%;text-transform: none;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Nhỏ hơn:</td>
+                            <td style="width:180px;">
+                              <input id="ct_form_page1_nhohon" type="text" style="width:100%;" selectedvalue="" title="Để trống hệ thống tự cấp!" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td style="width:120px;text-align:right;">Lớn hơn:&nbsp;</td>
+                            <td>
+                              <input id="ct_form_page1_lonhon" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Delta Check RCV(%):</td>
+                            <td style="width:180px;">
+                              <input id="ct_form_page1_rcv" type="text" style="width:100%;" selectedvalue="" title="Để trống hệ thống tự cấp!" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td style="width:120px;text-align:right;">Khoảng cách TG:&nbsp;</td>
+                            <td>
+                              <input id="ct_form_page1_timeslot" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td style="width:120px;">&nbsp;&nbsp;Max CSBT nữ</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Chỉ số bình thường nữ:</td>
+                            <td>
+                              <input id="ct_form_page1_ytah" type="text" style="width:100%;text-transform: none;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="tdcontent2" style="vertical-align: top; width: 40%; border: 1px solid #aca899; ">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+            <tr>
+              <td style="padding-top:0px;">
+                <div class="cm_form" style="padding:3px;padding-bottom:10px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                    <tbody>
+                    <tr>
+                      <td style="padding-top:5px;">
+                        <table cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">&nbsp;</td>
+                            <td><b><u>THÔNG TIN PHÂN LOẠI</u></b></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Thuộc sổ:</td>
+                            <td>
+                              <input id="ct_form_page1_soxn" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td class="cm_cb_down_dis" id="ct_form_page1_soxn_filter" onclick="ct_form_page1_filter_click(this);">&nbsp;</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Thuộc nhóm:</td>
+                            <td>
+                              <input id="ct_form_page1_nhomxn" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td class="cm_cb_down_dis" id="ct_form_page1_nhomxn_filter" onclick="ct_form_page1_filter_click(this);">&nbsp;</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:120px;">Thuộc loại:</td>
+                            <td>
+                              <input id="ct_form_page1_loaixn" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                            </td>
+                            <td class="cm_cb_down_dis" id="ct_form_page1_loaixn_filter" onclick="ct_form_page1_filter_click(this);">&nbsp;</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-top:3px;">
+                <div class="cm_form" style="padding:3px;padding-bottom:10px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                    <tbody>
+                    <tr>
+                      <td style="padding-top:5px;">
+                        <table cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td><b><u>THÔNG TIN QUẢN LÝ</u></b></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table cellspacing="0" cellpadding="0" align="left">
+                          <tbody>
+                          <tr>
+                            <td>
+                              <table width="100%" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang1" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang1_" for="ct_form_page1_tinhtrang1" class="cm_label">Không
+                                      xóa&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang2" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang2_" for="ct_form_page1_tinhtrang2" class="cm_label">Không
+                                      sửa&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang3" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang3_" for="ct_form_page1_tinhtrang3" class="cm_label">Không
+                                      sửa mã&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang4" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang4_" for="ct_form_page1_tinhtrang4" class="cm_label">Không
+                                      dùng mới&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang5" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang5_" for="ct_form_page1_tinhtrang5" class="cm_label">Đã
+                                      sử dụng&nbsp;</label></td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                            <td>
+                              <table width="100%" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang6" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang6_" for="ct_form_page1_tinhtrang6" class="cm_label">...&nbsp;</label>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang7" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang7_" for="ct_form_page1_tinhtrang7" class="cm_label">...&nbsp;</label>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang8" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang8_" for="ct_form_page1_tinhtrang8" class="cm_label">...&nbsp;</label>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang9" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang9_" for="ct_form_page1_tinhtrang9" class="cm_label">...&nbsp;</label>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="width:5px;">&nbsp;</td>
+                                  <td style="width:20px;">
+                                    <input id="ct_form_page1_tinhtrang10" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" value="" disabled="">
+                                  </td>
+                                  <td>
+                                    <label id="ct_form_page1_tinhtrang10_" for="ct_form_page1_tinhtrang10" class="cm_label">Mặc
+                                      định&nbsp;</label></td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2">
+                              <table width="100%" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                  <td style="width:130px;padding-left:5px;">Nhân viên cập nhật:</td>
+                                  <td>
+                                    <input id="ct_form_page1_nguoiud" disabled="" type="text" style="width:100%;" class="_dis" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="gf_auto_ngay(event, '', this);ct_form_page1_keyup(event,this);">
+                                  </td>
+                                  <td style="width:100px;">
+                                    <input id="ct_form_page1_ngayud" disabled="" type="text" class="_dis" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="gf_auto_ngay(event, '', this);ct_form_page1_keyup(event,this);">
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <ul style="font-size: 12px; list-style: none; padding-left: 10px">
+            <li>
+              <img src="/assets/cyber/icon/cm_tuychon.png"/> Trơ giúp nhanh
+              <ul style="list-style: none; padding: 5px 0px 0px 20px; color: #a0a0a0">
+                <li>
+                  + Nhấn phím [ Enter ] để đi đến ô nhập liệu kế tiếp.
+                </li>
+                <li>
+                  + Nhấn phím [ Space Bar ] để hiển thị nội dung trong các ô nhập liệu có danh sách đề nghị.
+                </li>
+                <li>
+                  + Nhấn phím [ Up, Down ] để di chuyển đến mục trước, sau trong danh sách chọn lựa.
+                </li>
+                <li>
+                  + Nhấn phím [ ESC ] để dấu đi danh sách chọn lựa.
+                </li>
+                <li>
+                  + Nhấn phím [ F2 ] để lấy viết tắt tại các ô nhập liệu chữ.
+                </li>
+                <li>
+                  + Nhập viết tắt [ TQX ] theo ví dụ sau: Tỉnh Tiền Giang - Huyện Gò Công Tây - Thị trấn Vĩnh
+                  Bình = TGGCVB.
+                </li>
+                <li>
+                  + Bật tùy chọn [ Lọc bệnh nhân theo ] trong [Tùy chọn] để lọc danh sách bệnh nhân trong các
+                  ô nhập liệu.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <img src="/assets/cyber/icon/cm_tuychon.png"/>Tùy Chọn
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!--tab 2-->
+<div id="tabs-2">
+<div id="tab2" style="margin-top: 7px; margin-bottom: 10px">
+<div id="cm_form_page2_content1" style="float: left">
+<table width="100%">
+<tbody>
+<tr>
+  <td class="cm_button_bg"><b>&nbsp;Phân loại</b></td>
+</tr>
+<tr>
+<td>
+<div id="ct_form_page2_c_l_c" style="width: 238px; overflow: auto; padding-left: 5px; height: 818px;">
+<div style="width:1024px;">
+<ul id="ct_grid_dsxetnghiem_tree_nhomdv2" class="tree">
+<li id="treSDTC_-9998Link" class="doc">
+  <img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="-9998" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'-9998','&lt;b&gt;Tất cả&lt;/b&gt;');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'-9998','&lt;b&gt;Tất cả&lt;/b&gt;');"><b>Tất
+  cả</b></span></li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="7" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'7','Xét Nghiệm, Thăm dò chức năng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'7','Xét Nghiệm, Thăm dò chức năng');">Xét Nghiệm, Thăm dò chức năng</span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="14" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'14','Xét nghiệm');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'14','Xét nghiệm');">Xét nghiệm</span>
+      <ul style="display: none;">
+        <li id="treSDTC_55Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="55" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'55','Bộ xét nghiệm');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'55','Bộ xét nghiệm');">Bộ xét nghiệm</span>
+        </li>
+        <li id="treSDTC_120Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="120" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'120','Giải phẫu bệnh lý');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'120','Giải phẫu bệnh lý');">Giải phẫu bệnh lý</span>
+        </li>
+        <li id="treSDTC_64Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="64" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'64','HIV');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'64','HIV');">HIV</span>
+        </li>
+        <li id="treSDTC_54Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="54" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'54','Xét nghiệm Huyết học');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'54','Xét nghiệm Huyết học');">Xét nghiệm Huyết học</span>
+        </li>
+        <li id="treSDTC_89Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="89" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'89','Xét nghiệm khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'89','Xét nghiệm khác');">Xét nghiệm khác</span>
+        </li>
+        <li id="treSDTC_52Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="52" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'52','Xét Nghiệm Miễn dịch');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'52','Xét Nghiệm Miễn dịch');">Xét Nghiệm Miễn dịch</span>
+        </li>
+        <li id="treSDTC_90Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="90" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'90','Xét nghiệm Nước tiểu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'90','Xét nghiệm Nước tiểu');">Xét nghiệm Nước tiểu</span>
+        </li>
+        <li id="treSDTC_91Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="91" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'91','Xét nghiệm Sinh hóa');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'91','Xét nghiệm Sinh hóa');">Xét nghiệm Sinh hóa</span>
+        </li>
+        <li id="treSDTC_92Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="92" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'92','Xét nghiệm Vi sinh');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'92','Xét nghiệm Vi sinh');">Xét nghiệm Vi sinh</span>
+        </li>
+        <li id="treSDTC_151Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="151" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'151','Xét nghiệm phân');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'151','Xét nghiệm phân');">Xét nghiệm phân</span>
+        </li>
+        <li id="treSDTC_171Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="171" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'171','Xét nghiệm chất dịch');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'171','Xét nghiệm chất dịch');">Xét nghiệm chất dịch</span>
+        </li>
+      </ul>
+    </li>
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="26" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'26','Thăm dò chức năng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'26','Thăm dò chức năng');">Thăm dò chức năng</span>
+      <ul style="display: none;">
+        <li id="treSDTC_51Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="51" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'51','Điện não đồ (EEG)');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'51','Điện não đồ (EEG)');">Điện não đồ (EEG)</span>
+        </li>
+        <li id="treSDTC_149Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="149" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'149','Điện tâm đồ (ECG)');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'149','Điện tâm đồ (ECG)');">Điện tâm đồ (ECG)</span>
+        </li>
+        <li id="treSDTC_61Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="61" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'61','Đo điện cơ (EMG)');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'61','Đo điện cơ (EMG)');">Đo điện cơ (EMG)</span>
+        </li>
+        <li id="treSDTC_81Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="81" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'81','Test tâm lý');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'81','Test tâm lý');">Test tâm lý</span>
+        </li>
+        <li id="treSDTC_155Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="155" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'155','Thăm dò chức năng khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'155','Thăm dò chức năng khác');">Thăm dò chức năng khác</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="5" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'5','Chẩn đoán hình ảnh');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'5','Chẩn đoán hình ảnh');">Chẩn đoán hình ảnh</span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="28" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'28','Chẩn đoán hình ảnh');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'28','Chẩn đoán hình ảnh');">Chẩn đoán hình ảnh</span>
+      <ul style="display: none;">
+        <li id="treSDTC_56Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="56" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'56','CĐHA loại khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'56','CĐHA loại khác');">CĐHA loại khác</span>
+        </li>
+        <li id="treSDTC_59Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="59" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'59','CT scanner');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'59','CT scanner');">CT scanner</span>
+        </li>
+        <li id="treSDTC_62Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="62" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'62','Đo loãng xương');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'62','Đo loãng xương');">Đo loãng xương</span>
+        </li>
+        <li id="treSDTC_73Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="73" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'73','MRI');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'73','MRI');">MRI</span>
+        </li>
+        <li id="treSDTC_75Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="75" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'75','Nội soi chẩn đoán');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'75','Nội soi chẩn đoán');">Nội soi chẩn đoán</span>
+        </li>
+        <li id="treSDTC_80Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="80" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'80','Siêu âm');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'80','Siêu âm');">Siêu âm</span>
+        </li>
+        <li id="treSDTC_87Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="87" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'87','X quang kỹ thuật số');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'87','X quang kỹ thuật số');">X quang kỹ thuật số</span>
+        </li>
+        <li id="treSDTC_88Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="88" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'88','X quang thường quy');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'88','X quang thường quy');">X quang thường quy</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="4" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'4','Thuốc, dịch truyền');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'4','Thuốc, dịch truyền');">Thuốc, dịch truyền</span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="24" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'24','Thuốc');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'24','Thuốc');">Thuốc</span>
+      <ul style="display: none;">
+        <li id="treSDTC_82Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="82" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'82','Thuốc cản quang');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'82','Thuốc cản quang');">Thuốc cản quang</span>
+        </li>
+        <li id="treSDTC_93Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="93" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'93','Thuốc thông thường');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'93','Thuốc thông thường');">Thuốc thông thường</span>
+        </li>
+        <li id="treSDTC_94Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="94" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'94','Thuốc y học dân tộc');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'94','Thuốc y học dân tộc');">Thuốc y học dân tộc</span>
+        </li>
+        <li id="treSDTC_167Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="167" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'167','Thuốc gây nghiện');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'167','Thuốc gây nghiện');">Thuốc gây nghiện</span>
+        </li>
+        <li id="treSDTC_168Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="168" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'168','Thuốc hướng thần');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'168','Thuốc hướng thần');">Thuốc hướng thần</span>
+        </li>
+        <li id="treSDTC_169Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="169" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'169','Thuốc tiêm chủng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'169','Thuốc tiêm chủng');">Thuốc tiêm chủng</span>
+        </li>
+      </ul>
+    </li>
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="36" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'36','Tiêm chủng ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'36','Tiêm chủng ');">Tiêm chủng </span>
+      <ul style="display: none;">
+        <li id="treSDTC_175Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="175" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'175','Tiêm chủng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'175','Tiêm chủng');">Tiêm chủng</span>
+        </li>
+      </ul>
+    </li>
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="13" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'13','Dịch truyền');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'13','Dịch truyền');">Dịch truyền</span>
+      <ul style="display: none;">
+        <li id="treSDTC_40Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="40" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'40','Dịch truyền');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'40','Dịch truyền');">Dịch truyền</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="1" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'1','Máu ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'1','Máu ');">Máu </span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="38" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'38','Máu và chế phẩm từ máu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'38','Máu và chế phẩm từ máu');">Máu và chế phẩm từ máu</span>
+      <ul style="display: none;">
+        <li id="treSDTC_150Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="150" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'150','Máu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'150','Máu');">Máu</span>
+        </li>
+        <li id="treSDTC_172Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="172" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'172','Chế phẩm từ máu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'172','Chế phẩm từ máu');">Chế phẩm từ máu</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+<img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="8" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'8','Dịch vụ kỹ thuât thông thường');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'8','Dịch vụ kỹ thuât thông thường');">Dịch vụ kỹ thuât thông thường</span>
+<ul style="display: none;">
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="21" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'21','Dịch vụ nội trú ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'21','Dịch vụ nội trú ');">Dịch vụ nội trú </span>
+  <ul style="display: none;">
+    <li id="treSDTC_78Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="78" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'78','Phí khử khuẩn dụng cụ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'78','Phí khử khuẩn dụng cụ');">Phí khử khuẩn dụng cụ</span>
+    </li>
+    <li id="treSDTC_174Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="174" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'174','Vật dụng sinh hoạt');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'174','Vật dụng sinh hoạt');">Vật dụng sinh hoạt</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="22" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'22','Dinh dưỡng ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'22','Dinh dưỡng ');">Dinh dưỡng </span>
+  <ul style="display: none;">
+    <li id="treSDTC_60Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="60" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'60','Dinh dưỡng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'60','Dinh dưỡng');">Dinh dưỡng</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="23" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'23','Gây mê');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'23','Gây mê');">Gây mê</span>
+  <ul style="display: none;">
+    <li id="treSDTC_63Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="63" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'63','Gây mê');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'63','Gây mê');">Gây mê</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="25" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'25','Nhóm khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'25','Nhóm khác');">Nhóm khác</span>
+  <ul style="display: none;">
+    <li id="treSDTC_72Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="72" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'72','Loại khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'72','Loại khác');">Loại khác</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="30" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'30','Phí dụng cụ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'30','Phí dụng cụ');">Phí dụng cụ</span>
+  <ul style="display: none;">
+    <li id="treSDTC_77Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="77" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'77','Phí dụng cụ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'77','Phí dụng cụ');">Phí dụng cụ</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="35" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'35','Điều trị bằng phóng xạ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'35','Điều trị bằng phóng xạ');">Điều trị bằng phóng xạ</span>
+  <ul style="display: none;">
+    <li id="treSDTC_148Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="148" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'148','Tia xạ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'148','Tia xạ');">Tia xạ</span>
+    </li>
+    <li id="treSDTC_156Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="156" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'156','Điều trị bằng phóng xạ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'156','Điều trị bằng phóng xạ');">Điều trị bằng phóng xạ</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="17" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'17','Vật lý trị liệu ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'17','Vật lý trị liệu ');">Vật lý trị liệu </span>
+  <ul style="display: none;">
+    <li id="treSDTC_85Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="85" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'85','Vật lý trị liệu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'85','Vật lý trị liệu');">Vật lý trị liệu</span>
+    </li>
+    <li id="treSDTC_159Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="159" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'159','Vật lý trị liệu với laser');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'159','Vật lý trị liệu với laser');">Vật lý trị liệu với laser</span>
+    </li>
+    <li id="treSDTC_160Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="160" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'160','Vật lý trị liệu với siêu âm');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'160','Vật lý trị liệu với siêu âm');">Vật lý trị liệu với siêu âm</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="19" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'19','Dịch vụ Y học cổ truyền ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'19','Dịch vụ Y học cổ truyền ');">Dịch vụ Y học cổ truyền </span>
+  <ul style="display: none;">
+    <li id="treSDTC_49Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="49" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'49','Ngải cứu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'49','Ngải cứu');">Ngải cứu</span>
+    </li>
+    <li id="treSDTC_50Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="50" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'50','Châm cứu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'50','Châm cứu');">Châm cứu</span>
+    </li>
+    <li id="treSDTC_164Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="164" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'164','Dịch vụ YHCT khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'164','Dịch vụ YHCT khác');">Dịch vụ YHCT khác</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="37" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'37','Tiền công');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'37','Tiền công');">Tiền công</span>
+  <ul style="display: none;">
+    <li id="treSDTC_57Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="57" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'57','Công chăm sóc');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'57','Công chăm sóc');">Công chăm sóc</span>
+    </li>
+    <li id="treSDTC_154Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="154" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'154','Công tiêm truyền');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'154','Công tiêm truyền');">Công tiêm truyền</span>
+    </li>
+    <li id="treSDTC_170Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="170" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'170','Công phẩu thuật');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'170','Công phẩu thuật');">Công phẩu thuật</span>
+    </li>
+    <li id="treSDTC_173Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="173" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'173','Công dịch vụ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'173','Công dịch vụ');">Công dịch vụ</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="20" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'20','Chi phí hành chính ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'20','Chi phí hành chính ');">Chi phí hành chính </span>
+  <ul style="display: none;">
+    <li id="treSDTC_42Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="42" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'42','Phí hành chính');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'42','Phí hành chính');">Phí hành chính</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="32" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'32','Phẫu thuật');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'32','Phẫu thuật');">Phẫu thuật</span>
+  <ul style="display: none;">
+    <li id="treSDTC_122Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="122" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'122','Phẫu thuật Bà mẹ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'122','Phẫu thuật Bà mẹ');">Phẫu thuật Bà mẹ</span>
+    </li>
+    <li id="treSDTC_123Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="123" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'123','Nắn chỉnh răng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'123','Nắn chỉnh răng');">Nắn chỉnh răng</span>
+    </li>
+    <li id="treSDTC_124Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="124" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'124','Phụ thu PTTT');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'124','Phụ thu PTTT');">Phụ thu PTTT</span>
+    </li>
+    <li id="treSDTC_129Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="129" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'129','Phẫu thuật Bỏng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'129','Phẫu thuật Bỏng');">Phẫu thuật Bỏng</span>
+    </li>
+    <li id="treSDTC_130Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="130" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'130','Phẫu thuật Chấn thương chỉnh hình');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'130','Phẫu thuật Chấn thương chỉnh hình');">Phẫu thuật Chấn thương chỉnh hình</span>
+    </li>
+    <li id="treSDTC_131Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="131" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'131','Phẫu thuật Da niêm');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'131','Phẫu thuật Da niêm');">Phẫu thuật Da niêm</span>
+    </li>
+    <li id="treSDTC_48Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="48" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'48','Phẫu thuật Gan mật tụy');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'48','Phẫu thuật Gan mật tụy');">Phẫu thuật Gan mật tụy</span>
+    </li>
+    <li id="treSDTC_132Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="132" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'132','Phẫu thuật Hàm mặt');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'132','Phẫu thuật Hàm mặt');">Phẫu thuật Hàm mặt</span>
+    </li>
+    <li id="treSDTC_133Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="133" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'133','Phẫu thuật Hô hấp');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'133','Phẫu thuật Hô hấp');">Phẫu thuật Hô hấp</span>
+    </li>
+    <li id="treSDTC_134Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="134" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'134','Phẫu thuật Loại khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'134','Phẫu thuật Loại khác');">Phẫu thuật Loại khác</span>
+    </li>
+    <li id="treSDTC_135Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="135" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'135','Phẫu thuật Lồng ngực');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'135','Phẫu thuật Lồng ngực');">Phẫu thuật Lồng ngực</span>
+    </li>
+    <li id="treSDTC_127Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="127" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'127','Phẫu thuật Mắt');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'127','Phẫu thuật Mắt');">Phẫu thuật Mắt</span>
+    </li>
+    <li id="treSDTC_136Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="136" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'136','Phẫu thuật Máu và hạch');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'136','Phẫu thuật Máu và hạch');">Phẫu thuật Máu và hạch</span>
+    </li>
+    <li id="treSDTC_145Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="145" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'145','Phẫu thuật Ngoại thần kinh');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'145','Phẫu thuật Ngoại thần kinh');">Phẫu thuật Ngoại thần kinh</span>
+    </li>
+    <li id="treSDTC_137Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="137" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'137','Phẫu thuật Ngoại tổng quát');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'137','Phẫu thuật Ngoại tổng quát');">Phẫu thuật Ngoại tổng quát</span>
+    </li>
+    <li id="treSDTC_138Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="138" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'138','Phẫu thuật Nội tiết');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'138','Phẫu thuật Nội tiết');">Phẫu thuật Nội tiết</span>
+    </li>
+    <li id="treSDTC_139Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="139" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'139','Phẫu thuật Răng miệng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'139','Phẫu thuật Răng miệng');">Phẫu thuật Răng miệng</span>
+    </li>
+    <li id="treSDTC_140Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="140" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'140','Phẫu thuật Sản phụ khoa');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'140','Phẫu thuật Sản phụ khoa');">Phẫu thuật Sản phụ khoa</span>
+    </li>
+    <li id="treSDTC_141Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="141" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'141','Phẫu thuật Sinh dục nam');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'141','Phẫu thuật Sinh dục nam');">Phẫu thuật Sinh dục nam</span>
+    </li>
+    <li id="treSDTC_142Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="142" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'142','Phẫu thuật Sinh dục nữ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'142','Phẫu thuật Sinh dục nữ');">Phẫu thuật Sinh dục nữ</span>
+    </li>
+    <li id="treSDTC_128Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="128" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'128','Phẫu thuật Tai mũi họng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'128','Phẫu thuật Tai mũi họng');">Phẫu thuật Tai mũi họng</span>
+    </li>
+    <li id="treSDTC_143Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="143" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'143','Phẫu thuật Tạo hình thẩm mỹ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'143','Phẫu thuật Tạo hình thẩm mỹ');">Phẫu thuật Tạo hình thẩm mỹ</span>
+    </li>
+    <li id="treSDTC_144Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="144" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'144','Phẫu thuật Thần kinh');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'144','Phẫu thuật Thần kinh');">Phẫu thuật Thần kinh</span>
+    </li>
+    <li id="treSDTC_146Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="146" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'146','Phẫu thuật Thận nhân tạo');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'146','Phẫu thuật Thận nhân tạo');">Phẫu thuật Thận nhân tạo</span>
+    </li>
+    <li id="treSDTC_44Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="44" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'44','Phẫu thuật Tiết niệu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'44','Phẫu thuật Tiết niệu');">Phẫu thuật Tiết niệu</span>
+    </li>
+    <li id="treSDTC_45Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="45" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'45','Phẫu thuật Tiêu hóa');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'45','Phẫu thuật Tiêu hóa');">Phẫu thuật Tiêu hóa</span>
+    </li>
+    <li id="treSDTC_46Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="46" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'46','Phẫu thuật Tim mạch');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'46','Phẫu thuật Tim mạch');">Phẫu thuật Tim mạch</span>
+    </li>
+    <li id="treSDTC_47Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="47" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'47','Phẫu thuật Ung bướu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'47','Phẫu thuật Ung bướu');">Phẫu thuật Ung bướu</span>
+    </li>
+    <li id="treSDTC_125Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="125" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'125','Răng giả cố định');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'125','Răng giả cố định');">Răng giả cố định</span>
+    </li>
+    <li id="treSDTC_126Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="126" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'126','Răng giả tháo lắp');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'126','Răng giả tháo lắp');">Răng giả tháo lắp</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="33" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'33','Thủ thuật');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'33','Thủ thuật');">Thủ thuật</span>
+  <ul style="display: none;">
+    <li id="treSDTC_95Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="95" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'95','Thủ thuật bà mẹ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'95','Thủ thuật bà mẹ');">Thủ thuật bà mẹ</span>
+    </li>
+    <li id="treSDTC_96Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="96" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'96','Thủ thuật bỏng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'96','Thủ thuật bỏng');">Thủ thuật bỏng</span>
+    </li>
+    <li id="treSDTC_97Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="97" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'97','Thủ thuật chấn thương chỉnh hình');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'97','Thủ thuật chấn thương chỉnh hình');">Thủ thuật chấn thương chỉnh hình</span>
+    </li>
+    <li id="treSDTC_98Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="98" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'98','Thủ thuật da niêm');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'98','Thủ thuật da niêm');">Thủ thuật da niêm</span>
+    </li>
+    <li id="treSDTC_99Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="99" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'99','Thủ thuật gan mật tụy');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'99','Thủ thuật gan mật tụy');">Thủ thuật gan mật tụy</span>
+    </li>
+    <li id="treSDTC_100Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="100" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'100','Thủ thuật hàm mặt');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'100','Thủ thuật hàm mặt');">Thủ thuật hàm mặt</span>
+    </li>
+    <li id="treSDTC_41Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="41" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'41','Thủ thuật hô hấp');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'41','Thủ thuật hô hấp');">Thủ thuật hô hấp</span>
+    </li>
+    <li id="treSDTC_101Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="101" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'101','Thủ thuật loại khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'101','Thủ thuật loại khác');">Thủ thuật loại khác</span>
+    </li>
+    <li id="treSDTC_102Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="102" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'102','Thủ thuật lồng ngực');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'102','Thủ thuật lồng ngực');">Thủ thuật lồng ngực</span>
+    </li>
+    <li id="treSDTC_103Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="103" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'103','Thủ thuật mắt');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'103','Thủ thuật mắt');">Thủ thuật mắt</span>
+    </li>
+    <li id="treSDTC_104Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="104" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'104','Thủ thuật máu và hạch');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'104','Thủ thuật máu và hạch');">Thủ thuật máu và hạch</span>
+    </li>
+    <li id="treSDTC_105Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="105" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'105','Thủ thuật ngoại thần kinh');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'105','Thủ thuật ngoại thần kinh');">Thủ thuật ngoại thần kinh</span>
+    </li>
+    <li id="treSDTC_106Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="106" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'106','Thủ thuật ngoại tổng quát');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'106','Thủ thuật ngoại tổng quát');">Thủ thuật ngoại tổng quát</span>
+    </li>
+    <li id="treSDTC_107Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="107" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'107','Thủ thuật nội tiết');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'107','Thủ thuật nội tiết');">Thủ thuật nội tiết</span>
+    </li>
+    <li id="treSDTC_108Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="108" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'108','Thủ thuật răng miệng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'108','Thủ thuật răng miệng');">Thủ thuật răng miệng</span>
+    </li>
+    <li id="treSDTC_109Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="109" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'109','Thủ thuật sản phụ khoa');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'109','Thủ thuật sản phụ khoa');">Thủ thuật sản phụ khoa</span>
+    </li>
+    <li id="treSDTC_110Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="110" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'110','Thủ thuật sinh dục nam');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'110','Thủ thuật sinh dục nam');">Thủ thuật sinh dục nam</span>
+    </li>
+    <li id="treSDTC_111Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="111" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'111','Thủ thuật sinh dục nữ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'111','Thủ thuật sinh dục nữ');">Thủ thuật sinh dục nữ</span>
+    </li>
+    <li id="treSDTC_112Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="112" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'112','Thủ thuật tai mũi họng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'112','Thủ thuật tai mũi họng');">Thủ thuật tai mũi họng</span>
+    </li>
+    <li id="treSDTC_113Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="113" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'113','Thủ thuật tạo hình thẩm mỹ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'113','Thủ thuật tạo hình thẩm mỹ');">Thủ thuật tạo hình thẩm mỹ</span>
+    </li>
+    <li id="treSDTC_114Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="114" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'114','Thủ thuật thần kinh');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'114','Thủ thuật thần kinh');">Thủ thuật thần kinh</span>
+    </li>
+    <li id="treSDTC_115Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="115" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'115','Thủ thuật thận nhân tạo');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'115','Thủ thuật thận nhân tạo');">Thủ thuật thận nhân tạo</span>
+    </li>
+    <li id="treSDTC_116Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="116" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'116','Thủ thuật tiết niệu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'116','Thủ thuật tiết niệu');">Thủ thuật tiết niệu</span>
+    </li>
+    <li id="treSDTC_117Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="117" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'117','Thủ thuật tiêu hóa');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'117','Thủ thuật tiêu hóa');">Thủ thuật tiêu hóa</span>
+    </li>
+    <li id="treSDTC_118Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="118" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'118','Thủ thuật tim mạch');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'118','Thủ thuật tim mạch');">Thủ thuật tim mạch</span>
+    </li>
+    <li id="treSDTC_121Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="121" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'121','Thủ thuật ung bướu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'121','Thủ thuật ung bướu');">Thủ thuật ung bướu</span>
+    </li>
+    <li id="treSDTC_119Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="119" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'119','Thủ thuật nội khoa');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'119','Thủ thuật nội khoa');">Thủ thuật nội khoa</span>
+    </li>
+    <li id="treSDTC_158Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="158" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'158','Thủ thuật sinh thiết');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'158','Thủ thuật sinh thiết');">Thủ thuật sinh thiết</span>
+    </li>
+    <li id="treSDTC_161Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="161" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'161','Thủ thuật mê tê');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'161','Thủ thuật mê tê');">Thủ thuật mê tê</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="34" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'34','Tiểu phẫu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'34','Tiểu phẫu');">Tiểu phẫu</span>
+  <ul style="display: none;">
+    <li id="treSDTC_147Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="147" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'147','Tiểu phẫu');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'147','Tiểu phẫu');">Tiểu phẫu</span>
+    </li>
+  </ul>
+</li>
+</ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="2" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'2','Vật tư y tế');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'2','Vật tư y tế');">Vật tư y tế</span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="18" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'18','Vật tư y tế');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'18','Vật tư y tế');">Vật tư y tế</span>
+      <ul style="display: none;">
+        <li id="treSDTC_76Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="76" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'76','Oxygen');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'76','Oxygen');">Oxygen</span>
+        </li>
+        <li id="treSDTC_86Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="86" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'86','Vật tư tiêu hao');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'86','Vật tư tiêu hao');">Vật tư tiêu hao</span>
+        </li>
+        <li id="treSDTC_153Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="153" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'153','Hóa chất thường');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'153','Hóa chất thường');">Hóa chất thường</span>
+        </li>
+        <li id="treSDTC_152Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="152" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'152','Hóa chất xét nghiệm');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'152','Hóa chất xét nghiệm');">Hóa chất xét nghiệm</span>
+        </li>
+        <li id="treSDTC_157Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="157" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'157','Vật tư y tế nha khoa');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'157','Vật tư y tế nha khoa');">Vật tư y tế nha khoa</span>
+        </li>
+        <li id="treSDTC_162Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="162" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'162','Vật tư y tế CTCH');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'162','Vật tư y tế CTCH');">Vật tư y tế CTCH</span>
+        </li>
+        <li id="treSDTC_163Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="163" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'163','Vật tư thay thế');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'163','Vật tư thay thế');">Vật tư thay thế</span>
+        </li>
+        <li id="treSDTC_165Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="165" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'165','Vật tư y tế khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'165','Vật tư y tế khác');">Vật tư y tế khác</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="9" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'9','Dịch vụ kỹ thuật cao');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'9','Dịch vụ kỹ thuật cao');">Dịch vụ kỹ thuật cao</span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="39" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'39','Dịch vụ kỹ thuật cao');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'39','Dịch vụ kỹ thuật cao');">Dịch vụ kỹ thuật cao</span>
+      <ul style="display: none;">
+        <li id="treSDTC_43Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="43" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'43','DSA');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'43','DSA');">DSA</span>
+        </li>
+        <li id="treSDTC_53Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="53" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'53','Dịch vụ kỷ thuật cao');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'53','Dịch vụ kỷ thuật cao');">Dịch vụ kỷ thuật cao</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="6" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'6','Thuốc K, Chống thải ghép');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'6','Thuốc K, Chống thải ghép');">Thuốc K, Chống thải ghép</span>
+  <ul style="display: none;">
+    <li id="treSDTC_29Link" class="doc">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="29" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'29','Thuốc K, Chống thải ghép');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'29','Thuốc K, Chống thải ghép');">Thuốc K, Chống thải ghép</span>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="3" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'3','Công khám');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'3','Công khám');">Công khám</span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="27" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'27','Công khám');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'27','Công khám');">Công khám</span>
+      <ul style="display: none;">
+        <li id="treSDTC_65Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="65" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'65','Khám chuyên khoa');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'65','Khám chuyên khoa');">Khám chuyên khoa</span>
+        </li>
+        <li id="treSDTC_66Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="66" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'66','Khám dịch vụ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'66','Khám dịch vụ');">Khám dịch vụ</span>
+        </li>
+        <li id="treSDTC_67Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="67" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'67','Khám khác');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'67','Khám khác');">Khám khác</span>
+        </li>
+        <li id="treSDTC_83Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="83" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'83','Khám bệnh');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'83','Khám bệnh');">Khám bệnh</span>
+        </li>
+        <li id="treSDTC_68Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="68" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'68','Khám sức khỏe');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'68','Khám sức khỏe');">Khám sức khỏe</span>
+        </li>
+        <li id="treSDTC_69Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="69" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'69','Khám tại nhà');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'69','Khám tại nhà');">Khám tại nhà</span>
+        </li>
+        <li id="treSDTC_70Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="70" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'70','Khám tiêm chủng');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'70','Khám tiêm chủng');">Khám tiêm chủng</span>
+        </li>
+        <li id="treSDTC_71Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="71" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'71','Khám tư vấn');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'71','Khám tư vấn');">Khám tư vấn</span>
+        </li>
+        <li id="treSDTC_166Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="166" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'166','Khám hội chẩn');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'166','Khám hội chẩn');">Khám hội chẩn</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="10" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'10','Chi phí vận chuyển');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'10','Chi phí vận chuyển');">Chi phí vận chuyển</span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="16" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'16','Vận chuyển ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'16','Vận chuyển ');">Vận chuyển </span>
+      <ul style="display: none;">
+        <li id="treSDTC_79Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="79" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'79','Phí vận chuyển');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'79','Phí vận chuyển');">Phí vận chuyển</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Tplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="11" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'11','Tiên giường');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'11','Tiên giường');">Tiên giường</span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="15" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'15','Tiền giường ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'15','Tiền giường ');">Tiền giường </span>
+      <ul style="display: none;">
+        <li id="treSDTC_74Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/T.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="74" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'74','Ngày giường');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'74','Ngày giường');">Ngày giường</span>
+        </li>
+        <li id="treSDTC_84Link" class="doc">
+          <img src="/assets/cyber/icon/I.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="84" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'84','Tiện ích trong phòng bệnh');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'84','Tiện ích trong phòng bệnh');">Tiện ích trong phòng bệnh</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="folder f-close">
+  <img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="12" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'12','CPT- 4');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'12','CPT- 4');">CPT- 4</span>
+  <ul style="display: none;">
+    <li class="folder f-close">
+      <img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/Lplus.gif" width="18" height="18"><img src="/assets/cyber/icon/_open.png" width="18" height="18"><span id="31" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'31','CPT- 4 ');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'31','CPT- 4 ');">CPT- 4 </span>
+      <ul style="display: none;">
+        <li id="treSDTC_58Link" class="doc">
+          <img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/spacer.gif" width="18" height="18"><img src="/assets/cyber/icon/L.gif" width="18" height="18"><img src="/assets/cyber/icon/_doc.png" width="18" height="18"><span id="58" class="cm_node" onclick="ct_grid_dsxetnghiem_tree_nhomdv2_click(this,'58','CPT4');" ondblclick="ct_grid_dsxetnghiem_tree_nhomdv2_dbclick(this,'58','CPT4');">CPT4</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cm_form_page2_content2" style="float:right; width:80%">
+<div class="cm_button_bg">
+  <table width="100%">
+    <tr>
+      <td class="cm_dg_header">DANH SÁCH XÉT NGHIỆM</td>
+      <td>
+        <table cellspacing='0' cellpadding='0' align="right" style="margin: -3px">
+          <tr>
+            <td></td>
+            <td>
+              <div class="cm_dg_bt_print"></div>
+            </td>
+            <td>|</td>
+            <td>
+              <select style="font-size:11px;height:18px;border-left:solid 1px #7F9DB9;border-top:solid 1px #7F9DB9;border-right:solid 1px #7F9DB9;border-bottom:solid 1px #7F9DB9;" onchange="ct_grid_dsxetnghiem_f_searchfield_onchange(this);">
+                <option value="stt">STT&nbsp;</option>
+                <option value="ma">Mã&nbsp;</option>
+                <option selected="" value="ten">Tên&nbsp;</option>
+                <option value="donvi">Đơn vị&nbsp;</option>
+                <option value="csbt_nu">Chỉ số bình thường nữ&nbsp;</option>
+                <option value="maxcsbt_nu">Max CSBT nữ&nbsp;</option>
+                <option value="mincsbt_nu">Min CSBT nữ&nbsp;</option>
+                <option value="csbt_nam">Chỉ số bình thường nam&nbsp;</option>
+                <option value="maxcsbt_nam">Max CSBT nam&nbsp;</option>
+                <option value="mincsbt_nam">Min CSBT nam&nbsp;</option>
+              </select>
+            </td>
+            <td>=</td>
+            <td>
+              <input class="cm_input_dg_ct_search" placeholder="Tìm kiếm"/>
+            </td>
+            <td>
+              <input class="cm_input_dg_bt_search"/>
+            </td>
+            <td>|</td>
+            <td>
+              <input class="cm_input_dg_ct_filter" placeholder="Tìm nhanh">
+            </td>
+            <td>|</td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_detail"></div>
+            </td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_icon"></div>
+            </td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_thumb"></div>
+            </td>
+            <td>|</td>
+            <td class="cm_refresh"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="buttonalpha">
+  <div style="background-color: #DBE7F5">
+    <table width="100%">
+      <tbody>
+      <tr>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách tất cả">&nbsp;&nbsp;</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là A">A</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là B">B</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là C">C</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là D">D</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là E">E</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là F">F</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là G">G</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là H">H</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là I">I</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là J">J</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là K">K</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là L">L</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là M">M</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là N">N</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là O">O</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là P">P</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Q">Q</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là R">R</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là S">S</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là T">T</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là U">U</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là V">V</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là W">W</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là X">X</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Y">Y</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Z">Z</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là số từ 0-9">0-9</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự đặc biệt">...</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="danhsachhienhanh"></div>
+<div class="totalrecord">
+  <table style="width:100%;height:100%;" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+      <td>
+        <table align="left" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+          <tr>
+            <td style="padding-left:1px;padding-right:0px;">&nbsp;Hiển thị:</td>
+            <td style="padding-left:1px;padding-right:0px;">
+              <input id="ct_grid_dstenvien_tk_pagesize" class="cm_input_dg_pagesize" maxlength="4" value="40" onblur="ct_grid_dstenvien_tk_f_show('NaN',this.value,'0','1');">
+            </td>
+            <td style="padding-left:1px;padding-right:0px;">mục / trang / tổng số <b>1000</b> mục</td>
+            <td style="padding-left:1px;padding-right:0px;">&nbsp;(Giới hạn:)/td>
+            <td style="padding-left:1px;padding-right:0px;">
+              <input id="ct_grid_dstenvien_tk_pagesize" class="cm_input_dg_pagesize" style="width:50px;" maxlength="6" value="1000" onblur="this.value=gf_to_decimal_l(this.value,10);g_limit=this.value;ct_grid_dstenvien_tk_f_load('0','0');">
+            </td>
+            <td style="padding-left:1px;padding-right:0px;">)</td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table align="right" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+          <tr>
+            <td>
+              <table class="cm_pager_bg" align="right" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr>
+                  <td class="cm_pager" style="font-weight:bold;text-decoration:none;color:#FF0000;" title="Trang: 1/26
+Record: 1-&gt;40" onclick="ct_grid_dstenvien_tk_f_show('0','40','0','1');">1
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 2/26
+Record: 41-&gt;80" onclick="ct_grid_dstenvien_tk_f_show('1','40','0','1');">2
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 3/26
+Record: 81-&gt;120" onclick="ct_grid_dstenvien_tk_f_show('2','40','0','1');">3
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 4/26
+Record: 121-&gt;160" onclick="ct_grid_dstenvien_tk_f_show('3','40','0','1');">4
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 5/26
+Record: 161-&gt;200" onclick="ct_grid_dstenvien_tk_f_show('4','40','0','1');">5
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 6/26
+Record: 201-&gt;240" onclick="ct_grid_dstenvien_tk_f_show('5','40','0','1');">6
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 7/26
+Record: 241-&gt;280" onclick="ct_grid_dstenvien_tk_f_show('6','40','0','1');">7
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 8/26
+Record: 281-&gt;320" onclick="ct_grid_dstenvien_tk_f_show('7','40','0','1');">8
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 9/26
+Record: 321-&gt;360" onclick="ct_grid_dstenvien_tk_f_show('8','40','0','1');">9
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 10/26
+Record: 361-&gt;400" onclick="ct_grid_dstenvien_tk_f_show('9','40','0','1');">10
+                  </td>
+                  <td class="cm_pager" title="Trang ti?p " onclick="ct_grid_dstenvien_tk_f_show('1','40','0','1');">&gt;</td>
+                  <td class="cm_pager" title="10 Trang ti?p " onclick="ct_grid_dstenvien_tk_f_show('10','40','0','1');">&gt;&gt;</td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+</div>
+
+<!--tab 3-->
+<div id="tabs-3">
+<div id="tab3" style="margin-top: 5px; margin-bottom: 10px">
+<div class="cm_button_bg">
+  <table width="100%">
+    <tr>
+      <td class="cm_dg_header">DANH SÁCH XÉT NGHIỆM THAM KHẢO</td>
+      <td>
+        <table cellspacing='0' cellpadding='0' align="right" style="margin: -3px">
+          <tr>
+            <td></td>
+            <td>
+              <div class="cm_dg_bt_print"></div>
+            </td>
+            <td>|</td>
+            <td>
+              <select style="font-size:11px;height:18px;border-left:solid 1px #7F9DB9;border-top:solid 1px #7F9DB9;border-right:solid 1px #7F9DB9;border-bottom:solid 1px #7F9DB9;" onchange="ct_grid_dsdoituong_f_searchfield_onchange(this);">
+                <option value="stt">STT&nbsp;</option>
+                <option value="ma">Mã&nbsp;</option>
+                <option selected="" value="ten">Tên&nbsp;</option>
+                <option value="sothe">Ràng buộc thẻ&nbsp;</option>
+                <option value="cha">Nhóm&nbsp;</option>
+              </select>
+            </td>
+            <td>=</td>
+            <td>
+              <input class="cm_input_dg_ct_search" placeholder="Tìm kiếm"/>
+            </td>
+            <td>
+              <input class="cm_input_dg_bt_search"/>
+            </td>
+            <td>|</td>
+            <td>
+              <input class="cm_input_dg_ct_filter" placeholder="Tìm nhanh">
+            </td>
+            <td>|</td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_detail"></div>
+            </td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_icon"></div>
+            </td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_thumb"></div>
+            </td>
+            <td>|</td>
+            <td class="cm_refresh"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="buttonalpha">
+  <div style="background-color: #DBE7F5">
+    <table width="100%">
+      <tbody>
+      <tr>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách tất cả">&nbsp;&nbsp;</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là A">A</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là B">B</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là C">C</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là D">D</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là E">E</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là F">F</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là G">G</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là H">H</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là I">I</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là J">J</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là K">K</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là L">L</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là M">M</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là N">N</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là O">O</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là P">P</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Q">Q</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là R">R</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là S">S</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là T">T</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là U">U</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là V">V</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là W">W</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là X">X</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Y">Y</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Z">Z</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là s? t? 0-9">0-9</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự đặc biệt">...</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="danhsachviettatthamkhao"></div>
+<div class="totalrecord">
+  <table style="width:100%;height:100%;" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+      <td>
+        <table align="left" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+          <tr>
+            <td style="padding-left:1px;padding-right:0px;">&nbsp;Hiển thị:</td>
+            <td style="padding-left:1px;padding-right:0px;">
+              <input id="ct_grid_dstenvien_tk_pagesize" class="cm_input_dg_pagesize" maxlength="4" value="40" onblur="ct_grid_dstenvien_tk_f_show('NaN',this.value,'0','1');">
+            </td>
+            <td style="padding-left:1px;padding-right:0px;">mục / trang / tổng số <b>1000</b> mục</td>
+            <td style="padding-left:1px;padding-right:0px;">&nbsp;(Giới hạn:</td>
+            <td style="padding-left:1px;padding-right:0px;">
+              <input id="ct_grid_dstenvien_tk_pagesize" class="cm_input_dg_pagesize" style="width:50px;" maxlength="6" value="1000" onblur="this.value=gf_to_decimal_l(this.value,10);g_limit=this.value;ct_grid_dstenvien_tk_f_load('0','0');">
+            </td>
+            <td style="padding-left:1px;padding-right:0px;">)</td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table align="right" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+          <tr>
+            <td>
+              <table class="cm_pager_bg" align="right" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr>
+                  <td class="cm_pager" style="font-weight:bold;text-decoration:none;color:#FF0000;" title="Trang: 1/26
+Record: 1-&gt;40" onclick="ct_grid_dstenvien_tk_f_show('0','40','0','1');">1
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 2/26
+Record: 41-&gt;80" onclick="ct_grid_dstenvien_tk_f_show('1','40','0','1');">2
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 3/26
+Record: 81-&gt;120" onclick="ct_grid_dstenvien_tk_f_show('2','40','0','1');">3
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 4/26
+Record: 121-&gt;160" onclick="ct_grid_dstenvien_tk_f_show('3','40','0','1');">4
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 5/26
+Record: 161-&gt;200" onclick="ct_grid_dstenvien_tk_f_show('4','40','0','1');">5
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 6/26
+Record: 201-&gt;240" onclick="ct_grid_dstenvien_tk_f_show('5','40','0','1');">6
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 7/26
+Record: 241-&gt;280" onclick="ct_grid_dstenvien_tk_f_show('6','40','0','1');">7
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 8/26
+Record: 281-&gt;320" onclick="ct_grid_dstenvien_tk_f_show('7','40','0','1');">8
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 9/26
+Record: 321-&gt;360" onclick="ct_grid_dstenvien_tk_f_show('8','40','0','1');">9
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 10/26
+Record: 361-&gt;400" onclick="ct_grid_dstenvien_tk_f_show('9','40','0','1');">10
+                  </td>
+                  <td class="cm_pager" title="Trang tiếp " onclick="ct_grid_dstenvien_tk_f_show('1','40','0','1');">&gt;</td>
+                  <td class="cm_pager" title="10 Trang tiếp " onclick="ct_grid_dstenvien_tk_f_show('10','40','0','1');">&gt;&gt;</td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+<!--tab 4-->
+<div id="tabs-4">
+  hướng dẫn
+</div>
+</div>
+</body>
+</html>

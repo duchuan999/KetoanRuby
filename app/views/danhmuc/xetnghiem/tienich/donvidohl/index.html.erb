@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html" charset="utf8"/>
+
+<!--<link rel="stylesheet" href="/assets/cyber/lib/reset.css">-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/assets/cyber/lib/flexigrid.pack.css">
+<style>
+    ul, ol, dl, li, dt, dd, h1, h2, h3, h4, h5, h6, form, body, html, p, blockquote, fieldset, input, object, iframe {
+        margin: 0;
+        padding: 0;
+    }
+
+    a img, :link img, :visited img {
+        border: none;
+    }
+
+    .toolbarTabs {
+        padding: 0 5px 2px 2px;
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: left -70px;
+        overflow: visible;
+    }
+
+    .tab-menu {
+        padding-top: 1px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        line-height: 16px;
+        font-size: 11px;
+    }
+
+    .tab-menu li {
+        display: block;
+        float: left;
+        margin: 0 0 5px 0;
+        cursor: pointer;
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: left -35px;
+    }
+
+    .tab-menu li.selected {
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: left 0;
+    }
+
+    .tab-menu li a {
+        display: block;
+        margin-left: 8px;
+        padding: 6px 15px 5px 9px;
+        text-align: center;
+        font-weight: normal;
+        color: #181818;
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: right -35px;
+    }
+
+    .tab-menu li.selected a {
+        color: #0000FF; /*#181818;*/
+        font-weight: bold;
+        background: url(/assets/cyber/icon/tabs.gif) repeat-x;
+        background-position: right 0;
+    }
+
+    ._dis {
+        background-color: transparent !important;
+        color: #03f !important;
+        border-left: solid 1px #f0f0f0 !important;
+        border-top: solid 1px #f0f0f0 !important;
+        border-right: solid 1px #f0f0f0 !important;
+        border-bottom: dotted 1px #666 !important;
+    }
+
+    .cm_button_bg {
+        background: url(/assets/cyber/icon/cm_button_bg.jpg)
+    }
+
+    .cm_form {
+        background-color: #F0F0F0;
+        background-image: url(/assets/cyber/icon/cm_form_bg.jpg);
+        background-position: 1px top;
+        background-repeat: repeat-y;
+        background-attachment: scroll;
+        border-left: solid 1px #ACA899;
+        border-top: solid 1px #ACA899;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    .cm_label {
+        font-size: 12px;
+        font-weight: 400;
+        color: #03f;
+        text-decoration: none;
+        text-align: right;
+        vertical-align: bottom;
+        cursor: pointer
+    }
+
+    .cm_label:hover, .cm_label:focus, .cm_label:active {
+        color: red;
+        text-decoration: underline;
+        cursor: pointer
+    }
+
+    .cm_cb_down, .cm_cb_down, .cm_cb_down {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_cb_down.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 20px;
+        border-left: solid 0 #B5B7BD;
+        border-top: solid 0 #ABADB3;
+        border-right: solid 0 #B5B7BD;
+        border-bottom: solid 0 #B5B7BD
+    }
+
+    .cm_cb_down:hover, .cm_cb_down:active, .cm_cb_down:focus {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_cb_down_over.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 20px;
+        border-left: solid 0 #93C6E9;
+        border-top: solid 0 #5794BF;
+        border-right: solid 0 #93C6E9;
+        border-bottom: solid 0 #93C6E9
+    }
+
+    .cm_cb_down_dis, .cm_cb_down_dis, .cm_cb_down_dis {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_cb_down_dis.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 20px;
+        border-left: solid 0 #B5B7BD;
+        border-top: solid 0 #ABADB3;
+        border-right: solid 0 #B5B7BD;
+        border-bottom: solid 0 #B5B7BD
+    }
+
+    .cm_cb_down_dis:hover, .cm_cb_down_dis:active, .cm_cb_down_dis:focus {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_cb_down_dis.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 20px;
+        border-left: solid 0 #93C6E9;
+        border-top: solid 0 #5794BF;
+        border-right: solid 0 #93C6E9;
+        border-bottom: solid 0 #93C6E9
+    }
+
+    .cm_bt_new {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_new.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 20px
+    }
+
+    .cm_bt_edit {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_edit.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_edit_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_edit.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_save {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_save.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_save_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_save.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_cancel {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_cancel.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_cancel_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_cancel.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_copy {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_copy.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_copy_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_copy.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_delete {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_delete.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_delete_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_delete.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_print {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_print.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 24px
+    }
+
+    .cm_bt_print_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_print.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 24px
+    }
+
+    .cm_bt_printcard {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_printcard.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 24px
+    }
+
+    .cm_bt_printcard_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_printcard.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 24px
+    }
+
+    .cm_bt_close {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_close.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_bt_close_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_close.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 22px
+    }
+
+    .cm_dcell_c_nopad {
+        border-left: solid 0 #D0D0D0;
+        border-top: solid 0 #D0D0D0;
+        border-right: solid 1px #D0D0D0;
+        border-bottom: solid 1px #D0D0D0;
+        text-align: center;
+        vertical-align: middle;
+        padding: 0
+    }
+
+    .cm_dg_header {
+        border: solid 0px #F0F0F0;
+        font-weight: bold;
+        vertical-align: middle;
+        padding-left: 5px;
+    }
+
+    .cm_button_bg {
+        background: url('/assets/cyber/icon/cm_button_bg.jpg');
+    }
+
+    .cm_dg_bt_print {
+        background-color: transparent;
+        background-image: url('/assets/cyber/icon/cm_tb_print.png');
+        background-position: center center;
+        border: solid 1px #A0A0A0;
+        cursor: pointer;
+        width: 17px;
+        height: 17px;
+    }
+
+    .cm_dg_bt_print:hover {
+        border: solid 1px #FF0000;
+    }
+
+    .cm_input_dg_ct_filter {
+        background-image: url('/assets/cyber/icon/cm_dg_bt_filter.png');
+        background-position: right 1px;
+        background-repeat: no-repeat;
+        color: #ACA899;
+        padding-left: 2px;
+        width: 120px;
+        border: solid 1px #7F9DB9;
+    }
+
+    .cm_input_dg_ct_filter:hover {
+        color: #03f;
+        background-color: #FFC;
+    }
+
+    .cm_dg_bt_viewstyle_detail, .cm_dg_bt_viewstyle_thumb, .cm_dg_bt_viewstyle_icon {
+        background-position: center center;
+        background-repeat: no-repeat;
+        border: solid 1px #A0A0A0;
+        cursor: pointer;
+        width: 19px;
+        height: 17px;
+    }
+
+    .cm_dg_bt_viewstyle_detail {
+        background-image: url('/assets/cyber/icon/cm_dg_bt_viewstyle_detail.png');
+    }
+
+    .cm_dg_bt_viewstyle_icon {
+        background-image: url('/assets/cyber/icon/cm_dg_bt_viewstyle_icon.png');
+        margin: 0px 3px 0px 3px;
+    }
+
+    .cm_dg_bt_viewstyle_thumb {
+        background-image: url('/assets/cyber/icon/cm_dg_bt_viewstyle_thumb.png');
+    }
+
+    .cm_dg_bt_viewstyle_detail:hover, .cm_dg_bt_viewstyle_thumb:hover, .cm_dg_bt_viewstyle_icon:hover,
+    .cm_dg_bt_viewstyle_thumb:hover {
+        border: solid 1px #FF0000;
+    }
+
+    .cm_refresh {
+        background-image: url('/assets/cyber/icon/cm_refresh.gif');
+        background-position: center center;
+        background-repeat: no-repeat;
+        border: solid 0 #FFF;
+        cursor: pointer;
+        width: 20px;
+    }
+
+    .cm_refresh:hover {
+        background-color: #C0DDFC;
+    }
+
+    .cm_input_dg_ct_search {
+        background-color: #FFF;
+        color: #ACA899;
+        padding-left: 2px;
+        width: 120px;
+        border: solid 1px #7F9DB9;
+    }
+
+    .cm_input_dg_ct_search:hover {
+        color: #03f;
+        background-color: #FFC;
+    }
+
+    .cm_input_dg_bt_search {
+        background-color: #F0F0F0;
+        background-image: url('/assets/cyber/icon/cm_dg_bt_search.png');
+        background-position: center 1px;
+        background-repeat: no-repeat;
+        width: 20px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+    }
+
+    .cm_input_dg_bt_search:hover {
+        background-color: #E0E0E0;
+        border: solid 1px #7F9DBF;
+    }
+
+    .cm_dg_bt_alpha {
+        background-color: #F0F0F0;
+        border: solid 1px #B0B0B0;
+        text-decoration: underline;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .cm_dg_bt_alpha:hover {
+        background-color: #d0e2fc;
+        color: red;
+    }
+
+    .cm_label {
+        font-weight: 400;
+        color: #03f;
+        text-decoration: none;
+        text-align: right;
+        vertical-align: bottom;
+        cursor: pointer
+    }
+
+    .cm_label:hover {
+        color: red;
+        text-decoration: underline;
+    }
+
+    .totalrecord {
+        text-align: right;
+        padding: 4px 5px 0px 0px;
+    }
+
+    .content {
+        overflow: auto;
+    }
+
+    .cm_bt_lang {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_lang.png);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 20px
+    }
+
+    .cm_bed {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bed.png);
+        background-position: 4px center;
+        background-repeat: no-repeat;
+        cursor: pointer
+    }
+
+    .cm_bed:hover, .cm_bed:active, .cm_bed:focus {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bed_hover.png);
+        background-position: 4px center;
+        background-repeat: no-repeat;
+        cursor: pointer
+    }
+
+    .cm_calendar {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_calendar.gif);
+        background-position: left center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 22px;
+        height: 15px;
+        border: solid 0 #000
+    }
+
+    .cm_calendar {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_calendar.gif);
+        background-position: left center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        width: 22px;
+        height: 15px;
+        border: solid 0 #000
+    }
+
+    .cm_cal {
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_calendar.gif);
+        background-position: 4px center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+    .cm_pager {
+        text-decoration: underline;
+        text-align: center;
+        height: 100%;
+        background-color: Transparent;
+        border-left: solid 0 #FFF;
+        border-top: solid 0 #FFF;
+        border-right: solid 0 #ACA899;
+        border-bottom: solid 0 #ACA899;
+        padding: 0 4px 0 3px
+    }
+
+    .cm_pager:hover, .cm_pager:active, .cm_pager:focus {
+        background-color: #C0DDFC;
+        border-left: solid 0 #ACA899;
+        border-top: solid 0 #ACA899;
+        border-right: solid 0 #FFF;
+        border-bottom: solid 0 #FFF
+    }
+
+    .cm_input_dg_pagesize {
+        font-size: 12px;
+        font-weight: 700;
+        background-color: #FFF;
+        color: #03f;
+        text-align: center;
+        text-decoration: underline;
+        width: 35px;
+        height: 100%;
+        border-left: solid 0 #7F9DB9;
+        border-top: solid 0 #7F9DB9;
+        border-right: solid 0 #7F9DB9;
+        border-bottom: solid 0 #7F9DB9;
+        vertical-align: bottom
+    }
+
+    .cm_input_dg_pagesize:hover, .cm_input_dg_pagesize:active, .cm_input_dg_pagesize:focus {
+        color: red;
+        background-color: #FFC;
+        border-left: solid 0 #7F9DBF;
+        border-top: solid 0 #7F9DBF;
+        border-right: solid 0 #7F9DBF;
+        border-bottom: solid 0 #7F9DBF
+    }
+
+    .cm_bt_sync {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_sync.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: pointer;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #00F;
+        padding: 0 7px 0 20px
+    }
+
+    .cm_bt_sync_dis {
+        width: auto;
+        height: 21px;
+        background-color: Transparent;
+        background-image: url(/assets/cyber/icon/cm_bt_sync.gif);
+        background-position: 3px center;
+        background-repeat: no-repeat;
+        border-left: solid 1px #FFF;
+        border-top: solid 1px #FFF;
+        border-right: solid 1px #ACA899;
+        border-bottom: solid 1px #ACA899;
+        cursor: default;
+        text-align: left;
+        vertical-align: middle;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 12px;
+        color: #A0A0A0;
+        padding: 0 7px 0 20px
+    }
+
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript" src="/assets/cyber/lib/flexigrid.pack.js"></script>
+<script type="text/javascript" src="/assets/cyber/lib/framework.js"></script>
+<script type="text/javascript" src="/assets/cyber/khambenh/phieukhambenh.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // hiển thị flexigrid tab 2
+        $("#tab2 .danhsachhienhanh").flexigrid({
+            colModel: [
+                { display: 'STT', name: '', width: 90, sortable: true, align: 'center' },
+                { display: 'Mã', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Tên Đơn vị', name: '', width: 120, sortable: true, align: 'center' }  ,
+                { display: 'Tên (Tiếng Anh)', name: '', width: 120, sortable: true, align: 'center' }
+            ],
+            useRp: true,
+            rp: 15,
+            showTableToggleBtn: true
+        });
+
+        // thiết lập độ cao cho tab 2
+        $('#tab2').css('height', $(window).height() - 100);
+
+        // hàm định nghĩa resize div content trong panel 1
+        function resize_tab2_divcontent() {
+            // thiết lập độ cao cho div content
+            var kq = $('#tab2').height() - $('#tab2 .cm_button_bg').height() - $('#tab2 .buttonalpha').height() - $('#tab2 .totalrecord').height() - 22;
+            $('.flexigrid .bDiv').height(kq);
+        }
+
+        // thiết lập độ cao cho tab 3
+        $('#tab3 .div_wrapper').css('height', $(window).height() - 90);
+
+        // hiển thị flexigrid
+        $("#tab3 .danhsachviettatthamkhao").flexigrid({
+            colModel: [
+                { display: 'STT', name: '', width: 90, sortable: true, align: 'center' },
+                { display: 'Mã', name: '', width: 120, sortable: true, align: 'center' },
+                { display: 'Tên Đơn vị', name: '', width: 120, sortable: true, align: 'center' }  ,
+                { display: 'Tên (Tiếng Anh)', name: '', width: 120, sortable: true, align: 'center' }
+            ],
+            useRp: true,
+            rp: 15,
+            showTableToggleBtn: true
+        });
+
+        // thiết lập độ cao cho tab 2
+        $('#tab3').css('height', $(window).height() - 100);
+
+        // hàm định nghĩa resize div content trong panel 1
+        function resize_tab3_divcontent() {
+            var kq = $('#tab3').height() - $('#tab3 .cm_button_bg').height() - $('#tab3 .buttonalpha').height() - $('#tab3 .totalrecord').height() - 22;
+            $('.flexigrid .bDiv').height(kq);
+        }
+
+        // sự kiện khi click tab sẽ kích hoạt resize
+        $("#tabs").tabs({
+            // sự kiện khi tab được chọn
+            activate: function (event, ui) {
+                // kiểm tra tab thứ 2 được chọn
+                if (ui.newTab.index() == 1) {
+                    // gọi hàm resize div content
+                    resize_tab2_divcontent();
+                }
+
+                // kiểm tra tab thứ 3 được chọn
+                if (ui.newTab.index() == 2) {
+                    // gọi hàm resize div bDiv
+                    resize_tab3_divcontent();
+                }
+            }
+        });
+
+        // sự kiện khi window resize
+        $(window).resize(function () {
+            // gọi hàm resize div content tab 2
+            resize_tab2_divcontent();
+
+            // gọi hàm resize div bDiv tab 2
+            resize_tab2_bDiv_flexigrid();
+
+            // gọi hàm resize div bDiv tab 3
+            resize_tab3_bDiv_flexigrid();
+        });
+    });
+</script>
+</head>
+
+<body>
+<!--định nghĩa tab-->
+<div id="tabs">
+<ul>
+  <li>
+    <a href="#tabs-1">
+      Thông tin chi tiết
+    </a>
+  </li>
+  <li>
+    <a href="#tabs-2">
+      Danh sách hiện hành
+    </a>
+  </li>
+  <li>
+    <a href="#tabs-3">
+
+      Danh sách tham khảo
+    </a>
+  </li>
+  <li>
+    <a href="#tabs-4">
+      Hướng dẫn
+    </a>
+  </li>
+</ul>
+
+<!--tab 1-->
+<div id="tabs-1">
+  <style>
+      #tab1 input[type='text'] {
+          width: 100%;
+          border: 1px solid #b5b7bd;
+          background-color: #fff;
+      }
+
+      #tab1 table {
+          width: 100%;
+      }
+
+      #tab1 table tr td {
+          padding: 0px 1px 0px 1px;
+      }
+
+      #tab1 .tdcontent3 ul li {
+          text-decoration: underline;
+          padding-bottom: 5px;
+      }
+
+      #tab1 .tdcontent1, #tab1 .tdcontent2 {
+
+          background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(6%, rgba(246, 246, 246, 0.99)), color-stop(100%, rgba(237, 237, 237, 0.88))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* IE10+ */
+          background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 0.99) 6%, rgba(237, 237, 237, 0.88) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e0ededed', GradientType=1); /* IE6-9 */
+      }
+  </style>
+
+  <div id="tab1" style="margin-top: 5px">
+    <table>
+      <tr>
+        <td class="cm_button_bg" style="width: 100%" colspan="2">
+          <table id="ct_form_page1_toolbar_bg" border="0" cellpadding="0" cellspacing="1" align="left" style="height:100%; width:0%">
+            <tbody>
+            <tr>
+              <td>
+                <input id="ct_form_page1_bt_new" type="button" class="cm_bt_new" classroot="cm_bt_new" readonly="" value="Mới" tooltip="Mới" onclick="" onkeypress="">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_save" type="button" class="cm_bt_save_dis" classroot="cm_bt_save" readonly="" value="Lưu" tooltip="Lưu" onclick="" onkeypress="" disabled="">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_cancel" type="button" class="cm_bt_cancel_dis" classroot="cm_bt_cancel" readonly="" value="Bỏ qua" tooltip="Bỏ qua" onclick="" onkeypress="" disabled="">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_edit" type="button" class="cm_bt_edit_dis" classroot="cm_bt_edit" readonly="" value="Sửa" tooltip="Sửa" onclick="" onkeypress="" disabled="">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_delete" type="button" class="cm_bt_delete_dis" classroot="cm_bt_delete" readonly="" value="Xóa" tooltip="Xóa" onclick="" onkeypress="" disabled="">
+              </td>
+
+              <td>
+                <input id="ct_form_page1_bt_lang" type="button" class="cm_bt_lang" classroot="cm_bt_lang" readonly="" value="Ngôn ngữ" tooltip="Ngôn ngữ" onclick="ct_form_page1_bt_click(this);" onkeypress="ct_form_page1_keypress(event,this);">
+              </td>
+              <td>
+                <input id="ct_form_page1_bt_close" type="button" class="cm_bt_close" classroot="cm_bt_close" readonly="" value="Kết thúc" tooltip="Kết thúc" onclick="" onkeypress="">
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="tdcontent1" style=" vertical-align: top;">
+          <div class="cm_form" style="padding:3px;padding-bottom:58px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="1">
+              <tbody>
+              <tr>
+                <td style="padding-top:5px;">
+                  <table width="100%" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                      <td style="width:120px;">&nbsp;</td>
+                      <td><b>THÔNG TIN ĐƠN VỊ ĐO (HL7)</b></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="100%" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                      <td style="width:120px;">Stt :</td>
+                      <td>
+                        <input id="ct_form_page1_stt" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                      </td>
+                      <td style="width:120px;text-align:right;">Mã :&nbsp;&nbsp;&nbsp;</td>
+                      <td style="padding-right:4px;">
+                        <input id="ct_form_page1_ma" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="100%" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                      <td style="width:120px;">Tên đơn vị:*</td>
+                      <td style="padding-right:4px;">
+                        <input id="ct_form_page1_ten" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table width="100%" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                      <td style="width:120px;">Tên tiếng Anh :</td>
+                      <td style="padding-right:4px;">
+                        <input id="ct_form_page1_ten_en" type="text" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" disabled="" class="_dis">
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+        <td class="tdcontent2" style="vertical-align: top; width: 40%;  ">
+          <div class="cm_form" style="padding:3px;padding-bottom:10px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="1">
+              <tbody>
+              <tr>
+                <td style="padding-top:5px;">
+                  <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                      <td style="width:5px;">&nbsp;</td>
+                      <td><b>THÔNG TIN QUẢN LÝ</b></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table cellspacing="0" cellpadding="0" align="left">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang1" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td><label id="ct_form_page1_tinhtrang1_" for="ct_form_page1_tinhtrang1" class="cm_label">Không
+                              xóa&nbsp;</label></td>
+                          </tr>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang2" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td><label id="ct_form_page1_tinhtrang2_" for="ct_form_page1_tinhtrang2" class="cm_label">Không
+                              sửa&nbsp;</label></td>
+                          </tr>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang3" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td><label id="ct_form_page1_tinhtrang3_" for="ct_form_page1_tinhtrang3" class="cm_label">Không
+                              sửa mã&nbsp;</label></td>
+                          </tr>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang4" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td><label id="ct_form_page1_tinhtrang4_" for="ct_form_page1_tinhtrang4" class="cm_label">Không
+                              dùng mới&nbsp;</label></td>
+                          </tr>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang5" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td><label id="ct_form_page1_tinhtrang5_" for="ct_form_page1_tinhtrang5" class="cm_label">Đã
+                              sử dụng&nbsp;</label></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td>
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang6" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td>
+                              <label id="ct_form_page1_tinhtrang6_" for="ct_form_page1_tinhtrang6" class="cm_label">...&nbsp;</label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang7" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td>
+                              <label id="ct_form_page1_tinhtrang7_" for="ct_form_page1_tinhtrang7" class="cm_label">...&nbsp;</label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang8" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td>
+                              <label id="ct_form_page1_tinhtrang8_" for="ct_form_page1_tinhtrang8" class="cm_label">...&nbsp;</label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang9" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td>
+                              <label id="ct_form_page1_tinhtrang9_" for="ct_form_page1_tinhtrang9" class="cm_label">...&nbsp;</label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="width:5px;">&nbsp;</td>
+                            <td style="width:20px;">
+                              <input id="ct_form_page1_tinhtrang10" class="cm_checkbox_dis" type="checkbox" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="ct_form_page1_keyup(event,this);" onchange="chk_onchange(this);" disabled="">
+                            </td>
+                            <td><label id="ct_form_page1_tinhtrang10_" for="ct_form_page1_tinhtrang10" class="cm_label">Mặc
+                              định&nbsp;</label></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                          <tbody>
+                          <tr>
+                            <td style="width:130px;padding-left:5px;">Nhân viên cập nhật:</td>
+                            <td>
+                              <input id="ct_form_page1_nguoiud" disabled="" type="text" style="width:100%;" class="_dis" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="gf_auto_ngay(event, '', this);ct_form_page1_keyup(event,this);">
+                            </td>
+                            <td style="width:100px;">
+                              <input id="ct_form_page1_ngayud" disabled="" type="text" class="_dis" style="width:100%;" selectedvalue="" onkeypress="ct_form_page1_keypress(event,this);" onblur="ct_form_page1_onblur(this);" onkeyup="gf_auto_ngay(event, '', this);ct_form_page1_keyup(event,this);">
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <ul style="font-size: 12px; list-style: none; padding-left: 10px">
+            <li>
+              <img src="/assets/cyber/icon/cm_tuychon.png"/> Trơ giúp nhanh
+              <ul style="list-style: none; padding: 5px 0px 0px 20px; color: #a0a0a0">
+                <li>
+                  + Nhấn phím [ Enter ] để đi đến ô nhập liệu kế tiếp.
+                </li>
+                <li>
+                  + Nhấn phím [ Space Bar ] để hiển thị nội dung trong các ô nhập liệu có danh sách đề nghị.
+                </li>
+                <li>
+                  + Nhấn phím [ Up, Down ] để di chuyển đến mục trước, sau trong danh sách chọn lựa.
+                </li>
+                <li>
+                  + Nhấn phím [ ESC ] để dấu đi danh sách chọn lựa.
+                </li>
+                <li>
+                  + Nhấn phím [ F2 ] để lấy viết tắt tại các ô nhập liệu chữ.
+                </li>
+                <li>
+                  + Nhập viết tắt [ TQX ] theo ví dụ sau: Tỉnh Tiền Giang - Huyện Gò Công Tây - Thị trấn Vĩnh
+                  Bình = TGGCVB.
+                </li>
+                <li>
+                  + Bật tùy chọn [ Lọc bệnh nhân theo ] trong [Tùy chọn] để lọc danh sách bệnh nhân trong các
+                  ô nhập liệu.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <img src="/assets/cyber/icon/cm_tuychon.png"/>Tùy Chọn
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!--tab 2-->
+<div id="tabs-2">
+<div id="tab2" style="margin-top: 7px; margin-bottom: 10px">
+<div class="cm_button_bg">
+  <table width="100%">
+    <tr>
+      <td class="cm_dg_header">DANH SÁCH ĐƠN VỊ ĐO (HL7)</td>
+      <td>
+        <table cellspacing='0' cellpadding='0' align="right" style="margin: -3px">
+          <tr>
+            <td></td>
+            <td>
+              <div class="cm_dg_bt_print"></div>
+            </td>
+            <td>|</td>
+            <td>
+              <select style="font-size:11px;height:18px;border-left:solid 1px #7F9DB9;border-top:solid 1px #7F9DB9;border-right:solid 1px #7F9DB9;border-bottom:solid 1px #7F9DB9;" onchange="ct_grid_dmdonvido_tk_f_searchfield_onchange(this);">
+                <option selected="" value="ma">Mã&nbsp;</option>
+                <option value="ten">Tên đơn vị&nbsp;</option>
+                <option value="ten1">Tên đơn vị 1&nbsp;</option>
+                <option value="heso">Hệ số 1&nbsp;</option>
+                <option value="hl7">HL7&nbsp;</option>
+              </select>
+            </td>
+            <td>=</td>
+            <td>
+              <input class="cm_input_dg_ct_search" placeholder="Tìm kiếm"/>
+            </td>
+            <td>
+              <input class="cm_input_dg_bt_search"/>
+            </td>
+            <td>|</td>
+            <td>
+              <input class="cm_input_dg_ct_filter" placeholder="Tìm nhanh">
+            </td>
+            <td>|</td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_detail"></div>
+            </td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_icon"></div>
+            </td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_thumb"></div>
+            </td>
+            <td>|</td>
+            <td class="cm_refresh"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="buttonalpha">
+  <div style="background-color: #DBE7F5">
+    <table width="100%">
+      <tbody>
+      <tr>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách tất cả">&nbsp;&nbsp;</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là A">A</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là B">B</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là C">C</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là D">D</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là E">E</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là F">F</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là G">G</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là H">H</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là I">I</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là J">J</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là K">K</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là L">L</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là M">M</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là N">N</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là O">O</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là P">P</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Q">Q</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là R">R</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là S">S</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là T">T</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là U">U</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là V">V</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là W">W</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là X">X</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Y">Y</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Z">Z</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là s? t? 0-9">0-9</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự đặc biệt">...</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="danhsachhienhanh"></div>
+<div class="totalrecord">
+  <table style="width:100%;height:100%;" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+      <td>
+        <table align="left" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+          <tr>
+            <td style="padding-left:1px;padding-right:0px;">&nbsp;Hiển thị:</td>
+            <td style="padding-left:1px;padding-right:0px;">
+              <input id="ct_grid_dstenvien_tk_pagesize" class="cm_input_dg_pagesize" maxlength="4" value="40" onblur="ct_grid_dstenvien_tk_f_show('NaN',this.value,'0','1');">
+            </td>
+            <td style="padding-left:1px;padding-right:0px;">mục / trang / tổng số <b>1000</b> mục</td>
+            <td style="padding-left:1px;padding-right:0px;">&nbsp;(Giới hạn:</td>
+            <td style="padding-left:1px;padding-right:0px;">
+              <input id="ct_grid_dstenvien_tk_pagesize" class="cm_input_dg_pagesize" style="width:50px;" maxlength="6" value="1000" onblur="this.value=gf_to_decimal_l(this.value,10);g_limit=this.value;ct_grid_dstenvien_tk_f_load('0','0');">
+            </td>
+            <td style="padding-left:1px;padding-right:0px;">)</td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table align="right" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+          <tr>
+            <td>
+              <table class="cm_pager_bg" align="right" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr>
+                  <td class="cm_pager" style="font-weight:bold;text-decoration:none;color:#FF0000;" title="Trang: 1/26
+Record: 1-&gt;40" onclick="ct_grid_dstenvien_tk_f_show('0','40','0','1');">1
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 2/26
+Record: 41-&gt;80" onclick="ct_grid_dstenvien_tk_f_show('1','40','0','1');">2
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 3/26
+Record: 81-&gt;120" onclick="ct_grid_dstenvien_tk_f_show('2','40','0','1');">3
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 4/26
+Record: 121-&gt;160" onclick="ct_grid_dstenvien_tk_f_show('3','40','0','1');">4
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 5/26
+Record: 161-&gt;200" onclick="ct_grid_dstenvien_tk_f_show('4','40','0','1');">5
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 6/26
+Record: 201-&gt;240" onclick="ct_grid_dstenvien_tk_f_show('5','40','0','1');">6
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 7/26
+Record: 241-&gt;280" onclick="ct_grid_dstenvien_tk_f_show('6','40','0','1');">7
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 8/26
+Record: 281-&gt;320" onclick="ct_grid_dstenvien_tk_f_show('7','40','0','1');">8
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 9/26
+Record: 321-&gt;360" onclick="ct_grid_dstenvien_tk_f_show('8','40','0','1');">9
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 10/26
+Record: 361-&gt;400" onclick="ct_grid_dstenvien_tk_f_show('9','40','0','1');">10
+                  </td>
+                  <td class="cm_pager" title="Trang tiếp " onclick="ct_grid_dstenvien_tk_f_show('1','40','0','1');">&gt;</td>
+                  <td class="cm_pager" title="10 Trang tiếp " onclick="ct_grid_dstenvien_tk_f_show('10','40','0','1');">&gt;&gt;</td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+<!--tab 3-->
+<div id="tabs-3">
+<div id="tab3" style="margin-top: 5px; margin-bottom: 10px">
+<div class="cm_button_bg">
+  <table width="100%">
+    <tr>
+      <td class="cm_dg_header">DANH SÁCH ĐƠN VỊ ĐO (HL7) THAM KHẢO</td>
+      <td>
+        <table cellspacing='0' cellpadding='0' align="right" style="margin: -3px">
+          <tr>
+            <td></td>
+            <td>
+              <div class="cm_dg_bt_print"></div>
+            </td>
+            <td>|</td>
+            <td>
+              <select style="font-size:11px;height:18px;border-left:solid 1px #7F9DB9;border-top:solid 1px #7F9DB9;border-right:solid 1px #7F9DB9;border-bottom:solid 1px #7F9DB9;" onchange="ct_grid_dmdonvidohl7_f_searchfield_onchange(this);">
+                <option value="stt">Stt&nbsp;</option>
+                <option value="ma">Mã&nbsp;</option>
+                <option selected="" value="ten">Tên đơn vị&nbsp;</option>
+                <option value="ten_en">Tên tiếng Anh&nbsp;</option>
+              </select>
+            </td>
+            <td>=</td>
+            <td>
+              <input class="cm_input_dg_ct_search" placeholder="Tìm kiếm"/>
+            </td>
+            <td>
+              <input class="cm_input_dg_bt_search"/>
+            </td>
+            <td>|</td>
+            <td>
+              <input class="cm_input_dg_ct_filter" placeholder="Tìm nhanh">
+            </td>
+            <td>|</td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_detail"></div>
+            </td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_icon"></div>
+            </td>
+            <td>
+              <div class="cm_dg_bt_viewstyle_thumb"></div>
+            </td>
+            <td>|</td>
+            <td class="cm_refresh"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="buttonalpha">
+  <div style="background-color: #DBE7F5">
+    <table width="100%">
+      <tbody>
+      <tr>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách tất cả">&nbsp;&nbsp;</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là A">A</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là B">B</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là C">C</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là D">D</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là E">E</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là F">F</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là G">G</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là H">H</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là I">I</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là J">J</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là K">K</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là L">L</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là M">M</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là N">N</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là O">O</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là P">P</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Q">Q</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là R">R</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là S">S</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là T">T</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là U">U</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là V">V</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là W">W</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là X">X</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Y">Y</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là Z">Z</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự là s? t? 0-9">0-9</div>
+        </td>
+        <td>
+          <div class="cm_dg_bt_alpha" title="Danh sách có ký tự đặc biệt">...</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="danhsachviettatthamkhao"></div>
+<div class="totalrecord">
+  <table style="width:100%;height:100%;" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+      <td>
+        <table align="left" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+          <tr>
+            <td style="padding-left:1px;padding-right:0px;">&nbsp;Hiển thị:</td>
+            <td style="padding-left:1px;padding-right:0px;">
+              <input id="ct_grid_dstenvien_tk_pagesize" class="cm_input_dg_pagesize" maxlength="4" value="40" onblur="ct_grid_dstenvien_tk_f_show('NaN',this.value,'0','1');">
+            </td>
+            <td style="padding-left:1px;padding-right:0px;">mục / trang / tổng số <b>1000</b> mục</td>
+            <td style="padding-left:1px;padding-right:0px;">&nbsp;(Giới hạn:</td>
+            <td style="padding-left:1px;padding-right:0px;">
+              <input id="ct_grid_dstenvien_tk_pagesize" class="cm_input_dg_pagesize" style="width:50px;" maxlength="6" value="1000" onblur="this.value=gf_to_decimal_l(this.value,10);g_limit=this.value;ct_grid_dstenvien_tk_f_load('0','0');">
+            </td>
+            <td style="padding-left:1px;padding-right:0px;">)</td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table align="right" cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+          <tr>
+            <td>
+              <table class="cm_pager_bg" align="right" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr>
+                  <td class="cm_pager" style="font-weight:bold;text-decoration:none;color:#FF0000;" title="Trang: 1/26
+Record: 1-&gt;40" onclick="ct_grid_dstenvien_tk_f_show('0','40','0','1');">1
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 2/26
+Record: 41-&gt;80" onclick="ct_grid_dstenvien_tk_f_show('1','40','0','1');">2
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 3/26
+Record: 81-&gt;120" onclick="ct_grid_dstenvien_tk_f_show('2','40','0','1');">3
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 4/26
+Record: 121-&gt;160" onclick="ct_grid_dstenvien_tk_f_show('3','40','0','1');">4
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 5/26
+Record: 161-&gt;200" onclick="ct_grid_dstenvien_tk_f_show('4','40','0','1');">5
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 6/26
+Record: 201-&gt;240" onclick="ct_grid_dstenvien_tk_f_show('5','40','0','1');">6
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 7/26
+Record: 241-&gt;280" onclick="ct_grid_dstenvien_tk_f_show('6','40','0','1');">7
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 8/26
+Record: 281-&gt;320" onclick="ct_grid_dstenvien_tk_f_show('7','40','0','1');">8
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 9/26
+Record: 321-&gt;360" onclick="ct_grid_dstenvien_tk_f_show('8','40','0','1');">9
+                  </td>
+                  <td class="cm_pager" style="" title="Trang: 10/26
+Record: 361-&gt;400" onclick="ct_grid_dstenvien_tk_f_show('9','40','0','1');">10
+                  </td>
+                  <td class="cm_pager" title="Trang tiếp " onclick="ct_grid_dstenvien_tk_f_show('1','40','0','1');">&gt;</td>
+                  <td class="cm_pager" title="10 Trang tiếp " onclick="ct_grid_dstenvien_tk_f_show('10','40','0','1');">&gt;&gt;</td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+<!--tab 4-->
+<div id="tabs-4">
+  hướng dẫn
+</div>
+</div>
+</body>
+</html>
