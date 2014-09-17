@@ -13,7 +13,19 @@ class Danhmuc::DmhethongtkController < ApplicationController
     @dmtinhchattk=Danhmuc::Dmtinhchattk.all
 
   end
-  def create
+  def act_insert_tk
+    sotk =params[:sotk].blank? ? '' : params[:sotk]
+    tentk =params[:tentk].blank? ? '' : params[:tentk]
+    tentienganh =params[:tentienganh].blank? ? '' : params[:tentienganh]
+    dmnhomtk =params[:dmnhomtk].blank? ? '' : params[:dmnhomtk]
+    tinhchat =params[:tinhchat].blank? ? '' : params[:tinhchat]
+    diengiai =params[:diengiai].blank? ? '' : params[:diengiai]
+    @result=Danhmuc::Dmhethongtk.themmoi(sotk,tentk,tentienganh,dmnhomtk,tinhchat,diengiai)
+    if @result.save
+      redirect_to(:action =>'index')
+    else
+      render ('new')
+    end
 
   end
   def edit
@@ -25,9 +37,12 @@ class Danhmuc::DmhethongtkController < ApplicationController
 
   end
   def delete
-
+    @dmtk=Danhmuc::Dmhethongtk.find(params[:sotk])
+    if @dmtk.destroy
+      redirect_to(:action => 'index')
+    end
   end
   def search
-
+    @ketqua= Timkiem(params[:sotk])
   end
 end

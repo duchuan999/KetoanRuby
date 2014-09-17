@@ -7,4 +7,9 @@ class DungchungController < ApplicationController
     # trả về giá trị
     render :json => tim_kiem_nhomtk(ten)
   end
+  def act_tim_kiem_tinhchat
+    ten=params[:tinhchat].blank? ? '' : params[:tinhchat]
+
+    render :json => timkiem_tinhchat(ten)
+  end
 end

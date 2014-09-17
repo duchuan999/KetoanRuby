@@ -86,4 +86,11 @@ KetoanRuby::Application.routes.draw do
   match '/danhmuc/dmhethongtk/delete/:sotk' => 'danhmuc/dmhethongtk#delete', :via => [:get,:post]
   match '/danhmuc/dmhethongtk/edit/:sotk' => 'danhmuc/dmhethongtk#edit', :via => [:get,:post]
   match '/danhmuc/dmhethongtk/update/:sotk' => 'danhmuc/dmhethongtk#update', :via => [:get,:post]
+  match '/danhmuc/dmhethongtk/act_insert_tk' => 'danhmuc/dmhethongtk#act_insert_tk', :via => [:get,:post]
+
+  match 'dungchung/act_tim_kiem_nhom_tk' => 'dungchung#act_tim_kiem_nhom_tk', :via => [:get,:post]
+  match 'dungchung/act_tim_kiem_tinhchat' => 'dungchung#act_tim_kiem_tinhchat', :via => [:get,:post]
+
+
+
 end

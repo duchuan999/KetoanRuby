@@ -3,10 +3,7 @@
   <hr>
   <%= form_for(:dmnhomtk, :url => {:action => 'update'}) do |f| %>
       <%= render(:partial => "form", :locals => {:f => f}) %>
-      <tr>
-        <td colspan="2" style='text-align:center;'><input type="button" id="btnSubmit" value=" Submit ">
-        </td>
-      </tr>
+
   <% end %>
   <hr>
   <%= link_to("<< Xem danh sách ", :action => 'index', :class => 'action index') %>

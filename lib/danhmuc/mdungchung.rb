@@ -5,6 +5,10 @@ module Danhmuc::Mdungchung
     # trả về
     return timkiem
   end
-
-  module_function :tim_kiem_nhomtk
+def timkiem_tinhchat(ten)
+  timkiem = Danhmuc::Dmtinhchattk.select("ma,ten").where(" ma like '%#{ten}%' or ten like '%#{ten}%'")
+  # trả về
+  return timkiem
+end
+  module_function :tim_kiem_nhomtk, :timkiem_tinhchat
 end
