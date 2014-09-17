@@ -39,12 +39,12 @@
     <tr>
       <th></th>
       <td>
-        <button class="menuText" id="buttonLuu" onclick="Insert_them_moi_doi_tuong()">Lưu thông tin</button>
+        <button class="btn" id="buttonLuu" onclick="Insert_them_moi_doi_tuong()">Lưu thông tin</button>
       </td>
     </tr>
   </table>
 
   <hr>
-  <%= link_to("<< Xem danh sách ", :action => 'index', :class => 'action index') %>
+  <%= link_to("<< Xem danh sách ", {:action => 'index'}, :class => 'btn btn-primary') %>
 </div>
 <div id="view-hidden"></div>

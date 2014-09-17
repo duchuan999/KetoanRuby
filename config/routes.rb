@@ -2,6 +2,10 @@ KetoanRuby::Application.routes.draw do
 
 
 
+  get "demo/index"
+
+  get "test/index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -90,6 +94,9 @@ KetoanRuby::Application.routes.draw do
 
   match 'dungchung/act_tim_kiem_nhom_tk' => 'dungchung#act_tim_kiem_nhom_tk', :via => [:get,:post]
   match 'dungchung/act_tim_kiem_tinhchat' => 'dungchung#act_tim_kiem_tinhchat', :via => [:get,:post]
+
+
+  match 'demo' => 'demo#index'
 
 
 

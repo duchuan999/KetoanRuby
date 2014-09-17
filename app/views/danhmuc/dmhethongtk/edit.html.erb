@@ -38,10 +38,10 @@
         </tr>
 
       <tr>
-        <td colspan="2" style='text-align:center;'><input type="button" id="btnSubmit" value=" Lưu thông tin " >
+        <td colspan="2" style='text-align:center;'><button class="btn" >Lưu thông tin</button>
         </td>
       </tr> </table>
   <% end %>
   <hr>
-  <%= link_to("<< Xem danh sách ", :action => 'index', :class => 'action index') %>
+  <%= link_to("<< Xem danh sách ",{:action => 'index'}, :class => 'btn btn-primary') %>
 </div>

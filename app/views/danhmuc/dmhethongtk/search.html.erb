@@ -1,18 +1,19 @@
+<div >
 
-<div>
-
-  <h2>Danh Sách Nhóm Tài Khoản</h2>
-  <%= link_to("<< Thêm mới", :action => 'new', :class => 'action new') %>
+  <h2>Danh Sách Hệ Thống Tài Khoản</h2>
+  <%= link_to("<< Thêm mới",{:action => 'new'}, :class => 'btn btn-primary') %>
   <form id="loginForm" method="post" action="/danhmuc/dmhethongtk/search">
     <table class="new">
       <tr>
-        <td>Mã </td>
+        <td> Mã   </td>
         <td> <input type="text" id="sotk" name="sotk" ></td>
-        <td> <%= submit_tag("Tìm") %></td>
+        <td> <%= submit_tag(" Tìm ",:class => 'btn btn-primary') %></td>
       </tr>
 
     </table>
   </form>
+</div>
+<div>
   <table class="TFtable" border="0">
     <tr>
       <th align="center">Số TK</th>
@@ -31,10 +32,11 @@
           <td align="left"><%= ketqua.nhomtk %></td>
           <td align="left"><%= ketqua.ten%></td>
           <td align="left"><%= ketqua.diengiai%></td>
-          <td width="10"><%= link_to("Xem", {:action => 'show',:sotk=> ketqua.sotk}, :class => 'action show') %></td>
-          <td width="10"><%= link_to("Xóa",{:action => 'delete',:sotk=>ketqua.sotk},:class => 'action_xoa') %></td>
-          <td width="10"><%= link_to("Sửa",{:action => 'edit',:sotk=>ketqua.sotk},:class => 'action_sua') %></td>
+          <td width="10"><%= link_to("Xem", {:action => 'show',:sotk=> ketqua.sotk}, :class => 'btn btn-mini') %></td>
+          <td width="10"><%= link_to("Xóa",{:action => 'delete',:sotk=>ketqua.sotk},:class => 'btn btn-mini btn-danger') %></td>
+          <td width="10"><%= link_to("Sửa",{:action => 'edit',:sotk=>ketqua.sotk},:class => 'btn btn-mini') %></td>
         </tr>
     <% end %>
   </table>
 </div>
+

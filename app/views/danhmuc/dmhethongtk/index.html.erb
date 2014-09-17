@@ -1,13 +1,13 @@
 <div >
 
   <h2>Danh Sách Hệ Thống Tài Khoản</h2>
-  <%= link_to("<< Thêm mới", :action => 'new', :class => 'action new') %>
+  <%= link_to("<< Thêm mới",{:action => 'new'}, :class => 'btn btn-primary') %>
   <form id="loginForm" method="post" action="/danhmuc/dmhethongtk/search">
     <table class="new">
       <tr>
         <td> Mã   </td>
         <td> <input type="text" id="sotk" name="sotk" ></td>
-        <td> <%= submit_tag(" Tìm ") %></td>
+        <td> <%= submit_tag(" Tìm ",:class => 'btn btn-primary') %></td>
       </tr>
 
     </table>
@@ -32,9 +32,9 @@
           <td align="left"><%= dmhethongtk.nhomtk %></td>
           <td align="left"><%= dmhethongtk.ten%></td>
           <td align="left"><%= dmhethongtk.diengiai%></td>
-          <td width="10"><%= link_to("Xem", {:action => 'show',:sotk=> dmhethongtk.sotk}, :class => 'action show') %></td>
-          <td width="10"><%= link_to("Xóa",{:action => 'delete',:sotk=>dmhethongtk.sotk},:class => 'action_xoa') %></td>
-          <td width="10"><%= link_to("Sửa",{:action => 'edit',:sotk=>dmhethongtk.sotk},:class => 'action_sua') %></td>
+          <td width="10"><%= link_to("Xem", {:action => 'show',:sotk=> dmhethongtk.sotk}, :class => 'btn btn-mini') %></td>
+          <td width="10"><%= link_to("Xóa",{:action => 'delete',:sotk=>dmhethongtk.sotk}, :confirm => 'Are you sure?',:class => 'btn btn-mini') %></td>
+          <td width="10"><%= link_to("Sửa",{:action => 'edit',:sotk=>dmhethongtk.sotk},:class => 'btn btn-mini ') %></td>
         </tr>
     <% end %>
   </table>

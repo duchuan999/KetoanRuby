@@ -17,7 +17,7 @@ function tai_trang(path, content) {
 
         },
         error: function (ex) {
-            alert("Error Server!!!" + ex);
+            alert("Loi tai trang 1" + ex);
         }
     });
 }
@@ -38,7 +38,7 @@ function tai_trang_v2(path, content) {
             content.hide().html(ser_res).fadeIn('slow');
         },
         error: function (ex) {
-            alert("Error Server!!!" + ex);
+            alert("Loi tai trang 2!!!" + ex);
         }
     });
 }
@@ -61,7 +61,7 @@ function gui_du_lieu(url, data, nhan_du_lieu) {
             nhan_du_lieu(ser_res);
         },
         error: function (ex) {
-            alert("Error Server!!!" + ex);
+            alert("gui du lieu loi !!!" + ex);
         }
     });
 }

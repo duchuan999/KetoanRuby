@@ -2,13 +2,13 @@
   <% if !flash[:notice].blank? %>
   <% end %>
   <h2>Danh Sách Nhóm Tài Khoản</h2>
-  <%= link_to("<< Thêm mới", :action => 'new', :class => 'action new') %>
+  <%= link_to("<< Thêm mới", {:action => 'new'}, :class => 'btn btn-primary') %>
   <form id="loginForm" method="post" action="/danhmuc/dmnhomtk/search2">
     <table class="new">
       <tr>
         <td>Mã </td>
         <td> <input type="text" id="manhom" name="manhom" ></td>
-        <td> <%= submit_tag("Tìm") %></td>
+        <td> <%= submit_tag("Tìm",:class =>'btn btn-primary') %></td>
       </tr>
 
     </table>
@@ -27,9 +27,9 @@
           <td><%= dmnhomtk.manhom %></td>
           <td align="left"><%= dmnhomtk.tennhom%></td>
           <td align="left"><%= dmnhomtk.ten%></td>
-          <td width="10"><%= link_to("Xem", {:action => 'show',:manhom=> dmnhomtk.manhom}, :class => 'action show') %></td>
-          <td width="10"><%= link_to("Xóa",{:action => 'delete',:manhom=>dmnhomtk.manhom},:class => 'action_xoa') %></td>
-          <td width="10"><%= link_to("Sửa",{:action => 'edit',:manhom=>dmnhomtk.manhom},:class => 'action_sua') %></td>
+          <td width="10"><%= link_to("Xem", {:action => 'show',:manhom=> dmnhomtk.manhom}, :class => 'btn btn-mini') %></td>
+          <td width="10"><%= link_to("Xóa",{:action => 'delete',:manhom=>dmnhomtk.manhom},:confirm => 'Are you sure?',:class => 'btn btn-mini btn-danger') %></td>
+          <td width="10"><%= link_to("Sửa",{:action => 'edit',:manhom=>dmnhomtk.manhom},:class => 'btn btn-mini') %></td>
         </tr>
     <% end %>
   </table>
